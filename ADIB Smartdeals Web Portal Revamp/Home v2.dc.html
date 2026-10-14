@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&amp;family=IBM+Plex+Sans+Arabic:wght@400;600&amp;family=IBM+Plex+Mono:wght@400;600&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,400,0..1,0">
+<script src="data.js"></script>
+<style>body{margin:0;background:#F3F5F9}a{color:#013978}a:hover{color:#00275A}
+@keyframes sdAurora{0%{transform:translate(0,0) scale(1)}50%{transform:translate(60px,-30px) scale(1.15)}100%{transform:translate(0,0) scale(1)}}
+@keyframes sdFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@keyframes sdDrop{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+@keyframes sdFade{from{opacity:0}to{opacity:1}}
+@keyframes sdPulseR{0%{box-shadow:0 0 0 0 rgba(217,45,32,.55)}70%{box-shadow:0 0 0 8px rgba(217,45,32,0)}100%{box-shadow:0 0 0 0 rgba(217,45,32,0)}}
+@keyframes sdRise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}</style>
+</helmet>
+<div style="width:1440px;background:#F3F5F9;font-family:'IBM Plex Sans',sans-serif;color:#14171F;position:relative;overflow:hidden;height:{{ rootH }}">
+  <div style="position:relative;background:#021B3D;overflow:hidden;color:#fff">
+    <div style="position:absolute;width:720px;height:720px;border-radius:50%;left:-160px;top:-320px;background:radial-gradient(circle,rgba(43,199,154,.32),rgba(43,199,154,0) 65%);animation:sdAurora 18s ease-in-out infinite"></div>
+    <div style="position:absolute;width:820px;height:820px;border-radius:50%;right:-240px;top:-200px;background:radial-gradient(circle,rgba(120,92,255,.30),rgba(120,92,255,0) 65%);animation:sdAurora 22s ease-in-out infinite reverse"></div>
+    <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.09) 1px,transparent 1px);background-size:22px 22px;mask-image:linear-gradient(#000,transparent 85%);-webkit-mask-image:linear-gradient(#000,transparent 85%)"></div>
+    <div style="position:relative;z-index:21">
+      <dc-import name="SiteHeader" transparent="{{ true }}" rotate="{{ false }}" query="{{ query }}" search-focus="{{ search }}" hint-size="100%,64px"></dc-import>
+    </div>
+    <div style="position:relative;max-width:1280px;margin:0 auto;padding:20px 0 36px;display:flex;flex-direction:column;gap:20px">
+      <div style="display:grid;grid-template-columns:minmax(0,1.9fr) minmax(0,1fr) minmax(0,1fr);grid-template-rows:188px 188px;gap:16px">
+        <article aria-roledescription="carousel" aria-label="Featured campaign, slide 1 of 2" style="grid-row:1 / span 2;position:relative;border-radius:24px;overflow:hidden;background:#013978;border:1px solid rgba(255,255,255,.12);display:grid;grid-template-columns:1.5fr 1fr">
+          <div style="padding:32px 36px;display:flex;flex-direction:column;gap:12px;position:relative;z-index:1">
+            <span style="align-self:flex-start;display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18)"><span style="font-family:'Material Symbols Rounded';font-size:16px">dark_mode</span>Ramadan · Dining</span>
+            <h1 style="margin:4px 0 0;font-size:46px;line-height:1.05;font-weight:600;letter-spacing:-.02em">Iftar &amp; Suhoor offers</h1>
+            <p style="margin:0;font-size:20px;line-height:1.35;color:#CFE0F5">Up to 40% off at 120+ restaurants</p>
+            <div style="margin-top:auto;display:flex;align-items:center;gap:10px">
+              <a href="#" style="height:48px;display:inline-flex;align-items:center;gap:8px;padding:0 22px;border-radius:999px;background:#fff;color:#013978;font-weight:600;font-size:15px;text-decoration:none;white-space:nowrap;flex:none">Explore offers<span style="font-family:'Material Symbols Rounded';font-size:20px">arrow_forward</span></a>
+              <div style="display:flex;gap:6px;margin-left:8px">
+                <button aria-label="Previous slide" style="width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.06);color:#fff;display:grid;place-items:center"><span style="font-family:'Material Symbols Rounded';font-size:20px">chevron_left</span></button>
+                <button aria-label="Next slide" style="width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.06);color:#fff;display:grid;place-items:center"><span style="font-family:'Material Symbols Rounded';font-size:20px">chevron_right</span></button>
+                <button aria-label="Pause slideshow" style="width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.06);color:#fff;display:grid;place-items:center"><span style="font-family:'Material Symbols Rounded';font-size:20px">pause</span></button>
+              </div>
+            </div>
+          </div>
+          <div style="position:relative;background:repeating-linear-gradient(135deg,oklch(0.42 0.08 60) 0 10px,oklch(0.39 0.075 60) 10px 20px);display:grid;place-items:center">
+            <div style="position:absolute;inset:0;background:linear-gradient(90deg,#013978,rgba(1,57,120,0) 40%)"></div>
+            <span style="position:relative;font-family:'IBM Plex Mono',monospace;font-size:12px;color:rgba(255,255,255,.7)">campaign photo · iftar table</span>
+            <div style="position:absolute;bottom:16px;right:16px;display:flex;gap:6px"><span style="width:22px;height:6px;border-radius:3px;background:#fff"></span><span style="width:6px;height:6px;border-radius:3px;background:rgba(255,255,255,.45)"></span></div>
+          </div>
+        </article>
+        <section aria-label="Just ask Maya" style="grid-column:2 / span 2;border-radius:24px;padding:16px 20px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);backdrop-filter:blur(14px);display:flex;flex-direction:column;gap:12px">
+          <div style="display:flex;align-items:center;gap:12px">
+            <div style="animation:sdFloat 3.2s ease-in-out infinite"><dc-import name="MayaAvatar" size="{{ 44 }}" hint-size="44px,44px"></dc-import></div>
+            <div style="display:flex;flex-direction:column;line-height:1.25">
+              <b style="font-size:20px;font-weight:600">Just ask Maya</b>
+              <span style="font-size:13px;color:#BFD2EC">Finds offers, explains them, and shows you where to tap</span>
+            </div>
+          </div>
+          <label style="height:48px;display:flex;align-items:center;gap:8px;padding:0 6px 0 16px;border-radius:999px;background:#fff;color:#5B6472">
+            <span style="flex:1;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Try “pizza near me this afternoon”</span>
+            <span aria-label="Speak" style="width:38px;height:38px;display:grid;place-items:center;color:#013978;font-family:'Material Symbols Rounded';font-size:22px">mic</span>
+            <span aria-label="Ask" style="width:38px;height:38px;border-radius:50%;background:#013978;color:#fff;display:grid;place-items:center;font-family:'Material Symbols Rounded';font-size:20px">arrow_upward</span>
+          </label>
+          <div style="display:flex;gap:8px;flex-wrap:nowrap;overflow:hidden;flex:none;height:30px">
+            <a href="#" style="flex:none;height:30px;display:inline-flex;align-items:center;padding:0 12px;border-radius:999px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:13px;text-decoration:none">How do I use a promo code?</a>
+            <a href="#" style="flex:none;height:30px;display:inline-flex;align-items:center;padding:0 12px;border-radius:999px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:13px;text-decoration:none">Iftar for 4 near me</a>
+            <a href="#" style="flex:none;height:30px;display:inline-flex;align-items:center;padding:0 12px;border-radius:999px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:13px;text-decoration:none">0% instalments on a laptop</a>
+          </div>
+        </section>
+        <section aria-label="Thursday Drop" style="border-radius:24px;padding:18px 20px;background:linear-gradient(160deg,rgba(247,144,9,.22),rgba(247,144,9,.06));border:1px solid rgba(247,144,9,.35);display:flex;flex-direction:column;gap:6px">
+          <span style="display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#FDC37D"><span style="font-family:'Material Symbols Rounded';font-size:16px">redeem</span>Thursday Drop</span>
+          <b style="font-size:17px;font-weight:600;line-height:1.3">Fresh offers every Thursday, 10:00</b>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:22px;font-weight:600;letter-spacing:.02em">{{ countdown }}</span>
+          <button style="margin-top:auto;align-self:flex-start;height:36px;display:inline-flex;align-items:center;gap:6px;padding:0 14px;border-radius:999px;border:0;background:#fff;color:#7A2E0E;font:inherit;font-size:13px;font-weight:600"><span style="font-family:'Material Symbols Rounded';font-size:18px">notifications</span>Remind me</button>
+        </section>
+        <section aria-label="Offers near you" style="position:relative;border-radius:24px;overflow:hidden;border:1px solid rgba(255,255,255,.16)">
+          <iframe title="Map of offers near you" srcdoc="{{ mapDoc }}" style="position:absolute;inset:0;width:100%;height:100%;border:0;pointer-events:none"></iframe>
+          <div style="position:absolute;left:0;right:0;bottom:0;padding:14px 16px;background:linear-gradient(transparent,rgba(2,27,61,.92) 45%);display:flex;align-items:flex-end;justify-content:space-between;gap:8px">
+            <div style="display:flex;flex-direction:column;line-height:1.25"><b style="font-size:16px;font-weight:600">18 offers near you</b><span style="font-size:12px;color:#BFD2EC">Within 5 km of Al Reem</span></div>
+            <a href="#" style="height:36px;display:inline-flex;align-items:center;gap:4px;padding:0 12px;border-radius:999px;background:#2BC79A;color:#02281E;font-size:13px;font-weight:600;text-decoration:none"><span style="font-family:'Material Symbols Rounded';font-size:18px">map</span>Open map</a>
+          </div>
+        </section>
+      </div>
+      <nav aria-label="Categories" style="display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:12px">
+        <sc-for list="{{ cats }}" as="c" hint-placeholder-count="8">
+          <a href="#" style="height:56px;display:flex;align-items:center;justify-content:center;gap:8px;border-radius:16px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);color:#fff;text-decoration:none;font-size:14px;transition:background .15s" style-hover="background:rgba(255,255,255,.16)">
+            <span style="font-family:'Material Symbols Rounded';font-size:22px;color:#8FE3C8">{{ c.icon }}</span>{{ c.en }}
+          </a>
+        </sc-for>
+      </nav>
+    </div>
+  </div>
+  <main style="max-width:1280px;margin:0 auto;padding:28px 0 56px;display:flex;flex-direction:column;gap:24px">
+    <section aria-labelledby="recall" style="display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;align-items:center;gap:10px">
+        <span style="width:36px;height:36px;border-radius:12px;background:#14171F;color:#fff;display:grid;place-items:center;font-family:'Material Symbols Rounded';font-size:20px">history</span>
+        <h2 id="recall" style="margin:0;font-size:20px;font-weight:600">Pick up where you left off</h2>
+        <span style="font-size:12px;color:#5B6472;padding:3px 8px;border-radius:999px;border:1px solid #D5DAE2">On this device</span>
+        <span style="flex:1"></span>
+        <a href="#" style="font-size:13px;color:#3D4450">Clear history</a>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px">
+        <sc-for list="{{ recall }}" as="r" hint-placeholder-count="4">
+          <a href="#" style="display:flex;gap:12px;align-items:center;padding:10px;border-radius:16px;background:#fff;border:1px solid #E6E9EF;text-decoration:none;color:#14171F;animation:sdRise .5s both;animation-delay:{{ r.delay }}" style-hover="border-color:#9DB6DC">
+            <span style="position:relative;width:64px;height:64px;flex:none;border-radius:12px;background:{{ r.bg }}"><span style="position:absolute;bottom:-4px;right:-4px;width:28px;height:28px;border-radius:8px;background:#fff;box-shadow:0 1px 4px rgba(16,24,40,.16);display:grid;place-items:center;font-size:10px;font-weight:600">{{ r.ini }}</span></span>
+            <span style="flex:1;min-width:0;display:flex;flex-direction:column;gap:1px;line-height:1.3">
+              <b style="font-size:16px;font-weight:600;color:#00775F">{{ r.value }} <span style="color:#14171F;font-weight:400;font-size:14px">· {{ r.m }}</span></b>
+              <span style="font-size:12px;color:#5B6472;display:flex;gap:4px;align-items:center"><span style="font-family:'Material Symbols Rounded';font-size:14px">{{ r.icon }}</span>{{ r.what }}</span>
+              <span style="font-size:12px;font-weight:600;color:{{ r.endsColor }}">{{ r.ends }}</span>
+            </span>
+          </a>
+        </sc-for>
+      </div>
+    </section>
+    <sc-for list="{{ railsA }}" as="r" hint-placeholder-count="3">
+      <section style="border-radius:24px;background:{{ r.tint }};padding:20px 24px 24px;display:flex;flex-direction:column;gap:16px;position:relative">
+        <div style="display:flex;align-items:center;gap:12px">
+          <span style="width:40px;height:40px;border-radius:12px;background:{{ r.solid }};color:#fff;display:grid;place-items:center;font-family:'Material Symbols Rounded';font-size:22px;box-shadow:0 6px 16px {{ r.glow }}">{{ r.icon }}</span>
+          <div style="display:flex;flex-direction:column;gap:2px">
+            <div style="display:flex;align-items:center;gap:10px">
+              <h2 style="margin:0;font-size:20px;line-height:1.3;font-weight:600">{{ r.pre }}<sc-if value="{{ r.temporal }}" hint-placeholder-val="{{ false }}"><span style="color:{{ r.text }}">{{ r.ctx }}</span></sc-if></h2>
+              <span style="display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;padding:3px 10px;border-radius:999px;background:#fff;color:{{ r.text }}"><sc-if value="{{ r.urgent }}" hint-placeholder-val="{{ false }}"><span style="width:8px;height:8px;border-radius:50%;background:#D92D20;animation:sdPulseR 1.6s infinite"></span></sc-if>{{ r.tag }}</span>
+            </div>
+            <sc-if value="{{ r.temporal }}" hint-placeholder-val="{{ false }}"><span style="font-size:13px;color:#3D4450">{{ r.why }}</span></sc-if>
+          </div>
+          <span style="flex:1"></span>
+          <a href="#" style="font-size:14px;font-weight:600;color:{{ r.text }};text-decoration:none;display:flex;align-items:center;gap:4px;min-height:36px;padding:0 12px;border-radius:999px;background:#fff">{{ r.seeAll }}<span style="font-family:'Material Symbols Rounded';font-size:18px">arrow_forward</span></a>
+        </div>
+        <div style="display:flex;gap:16px;align-items:stretch">
+          <sc-for list="{{ r.five }}" as="c" hint-placeholder-count="5">
+            <dc-import name="OfferCard" offer="{{ c.o }}" delay="{{ c.d }}" style="flex:none;width:calc((100% - 64px) / 5)" hint-size="233px,330px"></dc-import>
+          </sc-for>
+        </div>
+      </section>
+    </sc-for>
+    <section aria-labelledby="habit" style="border-radius:24px;background:#021B3D;color:#fff;padding:24px;display:grid;grid-template-columns:300px repeat(3,minmax(0,1fr));gap:16px;position:relative;overflow:hidden">
+      <div style="position:absolute;width:500px;height:500px;right:-120px;top:-260px;border-radius:50%;background:radial-gradient(circle,rgba(43,199,154,.25),transparent 65%)"></div>
+      <div style="position:relative;display:flex;flex-direction:column;gap:10px">
+        <h2 id="habit" style="margin:0;font-size:28px;font-weight:600;line-height:1.15">Make it a habit</h2>
+        <span style="font-size:14px;line-height:1.5;color:#BFD2EC">Small reminders so good offers don’t slip by. Stored on this device only. No login needed.</span>
+        <div style="display:flex;flex-direction:column;gap:8px;margin-top:6px">
+          <span style="font-size:12px;color:#BFD2EC">Your visits this week</span>
+          <div style="display:flex;gap:6px">
+            <sc-for list="{{ week }}" as="w" hint-placeholder-count="7">
+              <span style="display:flex;flex-direction:column;align-items:center;gap:4px;font-size:11px;color:#BFD2EC"><span style="width:28px;height:28px;border-radius:9px;background:{{ w.bg }};border:1px solid rgba(255,255,255,.2);display:grid;place-items:center;color:#02281E;font-family:'Material Symbols Rounded';font-size:16px">{{ w.icon }}</span>{{ w.d }}</span>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+      <sc-for list="{{ habits }}" as="h" hint-placeholder-count="3">
+        <div style="position:relative;border-radius:18px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);padding:18px;display:flex;flex-direction:column;gap:8px">
+          <div style="display:flex;align-items:center;justify-content:space-between">
+            <span style="width:40px;height:40px;border-radius:12px;background:{{ h.c }};display:grid;place-items:center;color:#fff;font-family:'Material Symbols Rounded';font-size:22px">{{ h.icon }}</span>
+            <span role="switch" aria-checked="{{ h.on }}" style="width:44px;height:26px;border-radius:13px;background:{{ h.track }};position:relative;flex:none"><span style="position:absolute;top:3px;left:{{ h.knob }};width:20px;height:20px;border-radius:50%;background:#fff;transition:left .15s"></span></span>
+          </div>
+          <b style="font-size:16px;font-weight:600;line-height:1.3">{{ h.t }}</b>
+          <span style="font-size:13px;line-height:1.45;color:#BFD2EC">{{ h.d }}</span>
+        </div>
+      </sc-for>
+    </section>
+    <sc-for list="{{ railsB }}" as="r" hint-placeholder-count="3">
+      <section style="border-radius:24px;background:{{ r.tint }};padding:20px 24px 24px;display:flex;flex-direction:column;gap:16px">
+        <div style="display:flex;align-items:center;gap:12px">
+          <span style="width:40px;height:40px;border-radius:12px;background:{{ r.solid }};color:#fff;display:grid;place-items:center;font-family:'Material Symbols Rounded';font-size:22px;box-shadow:0 6px 16px {{ r.glow }}">{{ r.icon }}</span>
+          <h2 style="margin:0;font-size:20px;line-height:1.3;font-weight:600">{{ r.pre }}</h2>
+          <span style="display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;padding:3px 10px;border-radius:999px;background:#fff;color:{{ r.text }}"><sc-if value="{{ r.urgent }}" hint-placeholder-val="{{ false }}"><span style="width:8px;height:8px;border-radius:50%;background:#D92D20;animation:sdPulseR 1.6s infinite"></span></sc-if>{{ r.tag }}</span>
+          <span style="flex:1"></span>
+          <a href="#" style="font-size:14px;font-weight:600;color:{{ r.text }};text-decoration:none;display:flex;align-items:center;gap:4px;min-height:36px;padding:0 12px;border-radius:999px;background:#fff">{{ r.seeAll }}<span style="font-family:'Material Symbols Rounded';font-size:18px">arrow_forward</span></a>
+        </div>
+        <div style="display:flex;gap:16px;align-items:stretch">
+          <sc-for list="{{ r.five }}" as="c" hint-placeholder-count="5">
+            <dc-import name="OfferCard" offer="{{ c.o }}" delay="{{ c.d }}" style="flex:none;width:calc((100% - 64px) / 5)" hint-size="233px,330px"></dc-import>
+          </sc-for>
+        </div>
+      </section>
+    </sc-for>
+  </main>
+  <footer style="background:#323644;color:#D5D9E2">
+    <div style="max-width:1280px;margin:0 auto;padding:36px 0 28px;display:grid;grid-template-columns:200px 1fr;gap:48px">
+      <img src="assets/adib-logo-footer.png" alt="ADIB" style="height:96px">
+      <div style="display:flex;flex-direction:column;gap:12px;font-size:13px;line-height:1.6">
+        <div style="display:flex;gap:32px;font-size:14px"><span><b style="color:#fff;font-weight:600">Need help?</b> customerservice@adib.ae</span><a href="#" style="color:#fff">Privacy Policy</a><a href="#" style="color:#fff">FAQs</a></div>
+        <p style="margin:0;max-width:880px">Disclaimer: maya.ai is a platform created by Crayon Data for communication of offers extended by merchants to the Bank's customers. The Bank is not selling or rendering any of these products or services and is not responsible for their sale, quality or features.</p>
+      </div>
+    </div>
+  </footer>
+  <div style="position:absolute;right:32px;top:816px;z-index:25;animation:sdFloat 3.6s ease-in-out infinite"><dc-import name="Maya" mode="fab" hint-size="190px,60px"></dc-import></div>
+  <sc-if value="{{ search }}" hint-placeholder-val="{{ false }}">
+    <div style="position:absolute;inset:64px 0 0 0;background:rgba(2,27,61,.45);backdrop-filter:blur(3px);z-index:20;animation:sdFade .2s both"></div>
+    <section role="listbox" aria-label="Search suggestions" style="position:absolute;top:70px;left:372px;width:780px;z-index:22;background:#fff;border-radius:20px;box-shadow:0 24px 64px rgba(2,27,61,.35);display:grid;grid-template-columns:1.25fr 1fr;overflow:hidden;animation:sdDrop .22s cubic-bezier(.2,.7,.2,1) both">
+      <div style="padding:12px;display:flex;flex-direction:column;gap:2px;border-right:1px solid #EEF0F3">
+        <div style="display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:12px;background:#EEF7F4">
+          <dc-import name="MayaAvatar" size="{{ 32 }}" hint-size="32px,32px"></dc-import>
+          <span style="flex:1;font-size:14px;line-height:1.35">Ask Maya: <b style="font-weight:600">“pizza near me this afternoon”</b></span>
+          <span style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:#3D4450;border:1px solid #C9D1DD;border-radius:5px;padding:2px 5px">Tab</span>
+        </div>
+        <span style="font-size:12px;font-weight:600;color:#5B6472;letter-spacing:.04em;text-transform:uppercase;padding:12px 12px 4px">Merchants</span>
+        <sc-for list="{{ sugg }}" as="s" hint-placeholder-count="3">
+          <div role="option" aria-selected="{{ s.sel }}" style="display:flex;align-items:center;gap:12px;padding:8px 12px;border-radius:12px;background:{{ s.bg }}">
+            <span style="width:40px;height:40px;border-radius:10px;background:{{ s.img }};display:grid;place-items:center;font-size:11px;font-weight:600">{{ s.ini }}</span>
+            <span style="flex:1;display:flex;flex-direction:column;line-height:1.3">
+              <span style="font-size:15px"><b style="font-weight:600">{{ s.hit }}</b>{{ s.rest }}</span>
+              <span style="font-size:12px;color:#5B6472">{{ s.badge }}</span>
+            </span>
+            <span style="display:flex;flex-direction:column;align-items:flex-end;line-height:1.3">
+              <b style="font-size:15px;font-weight:600;color:#00775F">{{ s.value }}</b>
+              <span style="font-size:12px;font-weight:600;color:{{ s.endsColor }}">{{ s.ends }}</span>
+            </span>
+          </div>
+        </sc-for>
+        <span style="font-size:12px;font-weight:600;color:#5B6472;letter-spacing:.04em;text-transform:uppercase;padding:12px 12px 4px">Categories</span>
+        <div style="display:flex;align-items:center;gap:12px;padding:8px 12px;border-radius:12px;font-size:15px"><span style="width:40px;height:40px;border-radius:10px;background:#E6EDF7;color:#013978;display:grid;place-items:center;font-family:'Material Symbols Rounded';font-size:20px">restaurant</span><span style="flex:1">Dining › <b style="font-weight:600">Piz</b>za</span><span style="font-size:13px;color:#5B6472">14 offers</span></div>
+      </div>
+      <div style="padding:16px 18px;display:flex;flex-direction:column;gap:16px;background:#FAFBFC">
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <span style="font-size:12px;font-weight:600;color:#5B6472;letter-spacing:.04em;text-transform:uppercase">Recent searches</span>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <sc-for list="{{ recent }}" as="x" hint-placeholder-count="3">
+              <span style="height:32px;display:inline-flex;align-items:center;gap:6px;padding:0 6px 0 10px;border-radius:999px;background:#fff;border:1px solid #D5DAE2;font-size:13px"><span style="font-family:'Material Symbols Rounded';font-size:16px;color:#5B6472">history</span>{{ x }}<span aria-label="Remove" style="font-family:'Material Symbols Rounded';font-size:16px;color:#5B6472;width:20px;text-align:center">close</span></span>
+            </sc-for>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:4px">
+          <span style="font-size:12px;font-weight:600;color:#5B6472;letter-spacing:.04em;text-transform:uppercase;margin-bottom:4px">Trending in Abu Dhabi</span>
+          <sc-for list="{{ trending }}" as="t" hint-placeholder-count="4">
+            <div style="display:flex;align-items:center;gap:10px;height:36px;font-size:14px"><span style="width:22px;font-family:'IBM Plex Mono',monospace;font-weight:600;color:#6941C6">{{ t.n }}</span><span style="flex:1">{{ t.l }}</span><span style="font-family:'Material Symbols Rounded';font-size:18px;color:#6941C6">trending_up</span></div>
+          </sc-for>
+        </div>
+        <span style="margin-top:auto;font-size:12px;color:#5B6472;font-family:'IBM Plex Mono',monospace">↑↓ move · Enter open · Esc close</span>
+      </div>
+    </section>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;search&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;}}">
+class Component extends DCLogic {
+  state = { now: Date.now() };
+  componentDidMount() {
+    if (!window.SD) this.t = setInterval(() => { if (window.SD) { clearInterval(this.t); this.forceUpdate(); } }, 50);
+    this.c = setInterval(() => this.setState({ now: Date.now() }), 30000);
+  }
+  componentWillUnmount() { clearInterval(this.t); clearInterval(this.c); }
+  renderVals() {
+    const SD = window.SD || { rails: [], cats: [], O: {} };
+    const search = !!this.props.search;
+    const n = new Date(this.state.now); const nx = new Date(n);
+    nx.setHours(10, 0, 0, 0); let add = (4 - n.getDay() + 7) % 7; if (add === 0 && n >= nx) add = 7; nx.setDate(n.getDate() + add);
+    const ms = nx - n, d = Math.floor(ms / 864e5), h = Math.floor(ms / 36e5) % 24, m = Math.floor(ms / 6e4) % 60;
+    const T = {
+      temporal: { solid: '#DC6803', text: '#B54708', tint: '#FFF4E6', glow: 'rgba(220,104,3,.35)', icon: 'schedule', tag: 'Your afternoons' },
+      'Discover something new': { solid: '#2E7BF6', text: '#1F5FD6', tint: '#EDF3FF', glow: 'rgba(46,123,246,.35)', icon: 'explore', tag: 'For you' },
+      'Exciting offers around you': { solid: '#0E9384', text: '#107569', tint: '#E8F6F3', glow: 'rgba(14,147,132,.35)', icon: 'near_me', tag: 'Near you' },
+      'More of what you like': { solid: '#7A5AF8', text: '#5925DC', tint: '#F3F0FE', glow: 'rgba(122,90,248,.35)', icon: 'favorite', tag: 'Your taste' },
+      'Expiring Soon': { solid: '#D92D20', text: '#B42318', tint: '#FEEFEE', glow: 'rgba(217,45,32,.4)', icon: 'timer', tag: 'Ending this week', urgent: true },
+      'Deals of the day': { solid: '#DD2590', text: '#C11574', tint: '#FDEEF6', glow: 'rgba(221,37,144,.35)', icon: 'bolt', tag: 'Today only' },
+      'Fresh out of the box': { solid: '#0E9384', text: '#107569', tint: '#E8F6F3', glow: 'rgba(14,147,132,.35)', icon: 'fiber_new', tag: 'New' },
+      'Best-selling offers': { solid: '#013978', text: '#013978', tint: '#EAF0F8', glow: 'rgba(1,57,120,.35)', icon: 'trending_up', tag: 'Trending' },
+    };
+    const map = r => ({ ...r, ...(r.temporal ? T.temporal : T[r.title]), temporal: !!r.temporal, urgent: !!(T[r.title] || {}).urgent, pre: r.temporal ? r.pre : r.title, seeAll: `See all (${r.n})`, five: r.items.slice(0, 5).map((o, i) => ({ o, d: i * 60 })) });
+    const all = SD.temporal ? [SD.temporal, ...SD.rails] : SD.rails;
+    const bg = h => `repeating-linear-gradient(135deg,oklch(0.92 0.04 ${h}) 0 6px,oklch(0.95 0.025 ${h}) 6px 12px)`;
+    const O = SD.O;
+    const rc = (o, icon, what, ends, red, i) => o ? ({ ...o, bg: bg(o.hue), icon, what, ends, endsColor: red ? '#B42318' : '#5B6472', delay: i * 70 + 'ms' }) : {};
+    const ps = (o, hit, rest, sel) => o ? ({ ...o, hit, rest, img: bg(o.hue), sel, bg: sel ? '#F1F5FB' : 'transparent', ends: o.days && o.days <= 7 ? `Ends in ${o.days} days` : '', endsColor: '#B42318' }) : {};
+    return {
+      mapDoc: window.SD_MAPDOC ? window.SD_MAPDOC('mini=1&dark=1') : '', search, query: search ? 'Piz' : '', rootH: search ? '900px' : 'auto',
+      countdown: `${d}d ${h}h ${String(m).padStart(2, '0')}m`,
+      cats: SD.cats,
+      recall: [
+        rc(O.namshi, 'content_copy', 'Code copied Tuesday', 'Ends in 3 days', true, 0),
+        rc(O.apple, 'visibility', 'Viewed yesterday', 'Valid until 31 Dec', false, 1),
+        rc(O.pizzaexpress, 'visibility', 'Viewed Monday evening', 'Ends in 5 days', true, 2),
+        rc(O.studiom, 'search', 'From your search “staycation”', 'Valid until 31 Dec', false, 3),
+      ],
+      railsA: all.slice(0, 3).map(map),
+      railsB: all.slice(3).map(map),
+      week: ['M', 'T', 'W', 'T', 'F', 'S', 'S'].map((d, i) => { const on = [0, 3, 4].includes(i); return { d, bg: on ? '#2BC79A' : 'transparent', icon: on ? 'check' : '' }; }),
+      habits: [
+        { icon: 'redeem', c: '#DC6803', t: 'Thursday Drop', d: 'A heads-up when new offers land, every Thursday at 10:00.', on: true },
+        { icon: 'lunch_dining', c: '#0E9384', t: 'Lunch pick · weekdays 12:30', d: 'One dining offer near you, picked from your usual lunch spots.', on: true },
+        { icon: 'timer', c: '#D92D20', t: 'Before saved offers end', d: 'A nudge 2 days before anything you saved expires.', on: false },
+      ].map(h => ({ ...h, track: h.on ? '#2BC79A' : 'rgba(255,255,255,.25)', knob: h.on ? '21px' : '3px' })),
+      sugg: [ps(O.pizzaexpress, 'Piz', 'zaExpress', true), ps(O.pizzazone, 'Piz', 'za Zone', false), ps(O.sicilian, 'Sicilian Piz', 'za', false)],
+      recent: ['Namshi', 'brunch', 'Apple EPP'],
+      trending: [{ n: '01', l: 'Iftar buffets' }, { n: '02', l: 'Yas Island tickets' }, { n: '03', l: 'Electronics 0% EPP' }, { n: '04', l: 'Staycations' }],
+    };
+  }
+}
+</script>
+</body>
+</html>

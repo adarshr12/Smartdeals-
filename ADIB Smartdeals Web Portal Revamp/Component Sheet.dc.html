@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&amp;family=IBM+Plex+Sans+Arabic:wght@400;600&amp;family=IBM+Plex+Mono:wght@400;600&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,400,0..1,0">
+<script src="data.js"></script>
+<style>body{margin:0;background:#F6F7F9}a{color:#013978}a:hover{color:#00275A}</style>
+</helmet>
+<div style="width:1440px;background:#F6F7F9;font-family:'IBM Plex Sans',sans-serif;color:#14171F;padding:48px 80px 64px;box-sizing:border-box;display:flex;flex-direction:column;gap:48px">
+  <header style="display:flex;flex-direction:column;gap:6px">
+    <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#5B6472">COMPONENT SHEET · sample data</span>
+    <h1 style="margin:0;font-size:40px;font-weight:600;line-height:1.1">Offer card &amp; filter chip bar</h1>
+  </header>
+  <section style="display:flex;flex-direction:column;gap:16px">
+    <h2 style="margin:0;font-size:20px;font-weight:600">Offer card · states</h2>
+    <div style="display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:20px;align-items:stretch">
+      <sc-for list="{{ states }}" as="s" hint-placeholder-count="7">
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <dc-import name="OfferCard" offer="{{ s.o }}" state="{{ s.state }}" style="height:100%" hint-size="100%,340px"></dc-import>
+          <div style="display:flex;flex-direction:column;gap:2px">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:600">{{ s.state }}</span>
+            <span style="font-size:12px;color:#5B6472;line-height:1.4">{{ s.note }}</span>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+  <section style="display:flex;flex-direction:column;gap:16px">
+    <h2 style="margin:0;font-size:20px;font-weight:600">Offer card · mechanic badges</h2>
+    <div style="display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:20px;align-items:stretch">
+      <sc-for list="{{ badges }}" as="o" hint-placeholder-count="6">
+        <dc-import name="OfferCard" offer="{{ o }}" show-reason="{{ false }}" hint-size="100%,320px"></dc-import>
+      </sc-for>
+    </div>
+  </section>
+  <section style="display:grid;grid-template-columns:auto 1fr;gap:40px;align-items:start">
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <h2 style="margin:0;font-size:20px;font-weight:600">Arabic · RTL</h2>
+      <div style="display:flex;gap:12px" dir="rtl">
+        <dc-import name="OfferCard" offer="{{ o1 }}" rtl="{{ true }}" style="width:240px" hint-size="240px,340px"></dc-import>
+        <dc-import name="OfferCard" offer="{{ o3 }}" rtl="{{ true }}" style="width:240px" hint-size="240px,340px"></dc-import>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px;font-size:14px;line-height:1.5;color:#3D4450;background:#fff;border:1px solid #E6E9EF;border-radius:16px;padding:20px 24px">
+      <h3 style="margin:0;font-size:16px;font-weight:600;color:#14171F">Anatomy &amp; rules</h3>
+      <ul style="margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px">
+        <li><b style="font-weight:600;color:#14171F">Value</b> 20px semibold teal — never “up to”; tiers as “15–30% off”.</li>
+        <li><b style="font-weight:600;color:#14171F">Condition</b> 13px grey · <b style="font-weight:600;color:#14171F">Merchant</b> 14px · optional reason string 12px.</li>
+        <li>Footer: urgency only ≤7 days (amber), red only “Ends today”; neutral grey 8–30 days; hidden beyond 30.</li>
+        <li>Eligible-card chip only when restricted. No category label.</li>
+        <li>Save target 44×44; logo 40px, 8px radius, overlaps image edge. RTL mirrors badge/heart/logo; initials, numbers and codes stay LTR.</li>
+        <li>Motion: heart 1→1.2→1 / 200ms; hover lift −2px; skeleton shimmer 1.2s; image morphs to detail hero. All disabled under reduced motion.</li>
+      </ul>
+    </div>
+  </section>
+  <section style="display:flex;flex-direction:column;gap:20px">
+    <h2 style="margin:0;font-size:20px;font-weight:600">Filter chip bar</h2>
+    <div style="display:grid;grid-template-columns:180px 1fr;gap:16px 24px;align-items:center;background:#fff;border:1px solid #E6E9EF;border-radius:16px;padding:24px">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#5B6472">default</span>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <span style="height:36px;display:flex;align-items:center;gap:6px;padding:0 14px 0 10px;border-radius:999px;border:1px solid #C9D1DD;font-size:14px"><span style="font-family:'Material Symbols Rounded';font-size:18px">tune</span>Filters</span>
+        <span style="height:36px;display:flex;align-items:center;gap:2px;padding:0 10px 0 14px;border-radius:999px;border:1px solid #C9D1DD;font-size:14px">Sort<span style="font-family:'Material Symbols Rounded';font-size:18px">expand_more</span></span>
+        <sc-for list="{{ chipNames }}" as="c" hint-placeholder-count="8"><span style="height:36px;display:flex;align-items:center;padding:0 14px;border-radius:999px;border:1px solid #C9D1DD;font-size:14px">{{ c }}</span></sc-for>
+      </div>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#5B6472">active</span>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <span style="height:36px;display:flex;align-items:center;gap:6px;padding:0 14px 0 10px;border-radius:999px;border:1px solid #013978;background:#EEF3FA;color:#013978;font-size:14px;font-weight:600"><span style="font-family:'Material Symbols Rounded';font-size:18px">tune</span>Filters · 2</span>
+        <span style="height:36px;display:flex;align-items:center;gap:4px;padding:0 10px 0 14px;border-radius:999px;background:#013978;color:#fff;font-size:14px">In-store<span style="font-family:'Material Symbols Rounded';font-size:18px">close</span></span>
+        <span style="height:36px;display:flex;align-items:center;gap:4px;padding:0 10px 0 14px;border-radius:999px;background:#013978;color:#fff;font-size:14px">Expiring soon<span style="font-family:'Material Symbols Rounded';font-size:18px">close</span></span>
+        <span style="height:36px;display:flex;align-items:center;padding:0 14px;border-radius:999px;border:2px solid #013978;font-size:14px;outline:2px solid #9DB6DC;outline-offset:2px">Online <span style="font-size:12px;color:#5B6472;margin-left:8px">focus ring</span></span>
+        <span style="height:36px;display:flex;align-items:center;padding:0 14px;border-radius:999px;border:1px solid #013978;font-size:14px">BOGO <span style="font-size:12px;color:#5B6472;margin-left:8px">hover</span></span>
+      </div>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#5B6472">applied-pill row</span>
+      <div style="display:flex;align-items:center;gap:12px">
+        <span style="font-size:16px;font-weight:600">128 offers</span>
+        <span style="width:1px;height:20px;background:#D5DAE2"></span>
+        <span style="height:32px;display:inline-flex;align-items:center;gap:4px;padding:0 6px 0 12px;border-radius:999px;background:#E6EDF7;color:#013978;font-size:13px;font-weight:600">In-store<span style="width:24px;height:24px;display:grid;place-items:center;font-family:'Material Symbols Rounded';font-size:16px">close</span></span>
+        <span style="height:32px;display:inline-flex;align-items:center;gap:4px;padding:0 6px 0 12px;border-radius:999px;background:#E6EDF7;color:#013978;font-size:13px;font-weight:600">Works with Visa Infinite<span style="width:24px;height:24px;display:grid;place-items:center;font-family:'Material Symbols Rounded';font-size:16px">close</span></span>
+        <a href="#" style="font-size:13px;font-weight:600">Clear all</a>
+        <span style="flex:1"></span>
+        <span style="height:40px;display:flex;align-items:center;gap:4px;padding:0 8px 0 12px;border-radius:12px;border:1px solid #C9D1DD;font-size:14px"><span style="color:#5B6472">Sort:</span><b style="font-weight:600">Recommended</b><span style="font-family:'Material Symbols Rounded';font-size:18px">expand_more</span></span>
+      </div>
+    </div>
+    <p style="margin:0;font-size:13px;color:#5B6472">Chips 36px pill · fill transitions 150ms · sticky under header · desktop opens a popover per chip, mobile opens the filter bottom sheet. Sort: Recommended · Highest value · Ending soon · Newest · Nearest.</p>
+  </section>
+  <section style="display:flex;flex-direction:column;gap:16px">
+    <h2 style="margin:0;font-size:20px;font-weight:600">Hero · slide 2 (Sponsored)</h2>
+    <article style="width:900px;height:225px;border-radius:16px;background:#E3EEEA;display:grid;grid-template-columns:1fr 1fr;overflow:hidden">
+      <div style="padding:28px 32px;display:flex;flex-direction:column;gap:10px">
+        <span style="align-self:flex-start;font-size:11px;font-weight:600;padding:3px 8px;border-radius:6px;background:#fff;color:#3D4450">Sponsored</span>
+        <h3 style="margin:0;font-size:28px;font-weight:600;line-height:1.15;color:#0B3B2E">IMG Worlds of Adventure</h3>
+        <p style="margin:0;font-size:16px;color:#1F4D40">30% off general admission with code</p>
+        <a href="#" style="margin-top:auto;align-self:flex-start;height:40px;display:inline-flex;align-items:center;padding:0 18px;border-radius:999px;background:#013978;color:#fff;font-weight:600;font-size:14px;text-decoration:none">View offer</a>
+      </div>
+      <div style="margin:12px 12px 12px 0;border-radius:12px;background:repeating-linear-gradient(135deg,oklch(0.88 0.04 165) 0 10px,oklch(0.91 0.03 165) 10px 20px);display:grid;place-items:center"><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:rgba(20,23,31,.5)">partner key visual</span></div>
+    </article>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() {
+    if (!window.SD) this.t = setInterval(() => { if (window.SD) { clearInterval(this.t); this.forceUpdate(); } }, 50);
+  }
+  componentWillUnmount() { clearInterval(this.t); }
+  renderVals() {
+    const O = window.SD ? window.SD.O : {};
+    const bogo = { m: 'Huff & Puff Burger', ini: 'HP', badge: 'BOGO', value: 'Buy 1, get 1 free', cond: 'Burgers · Sun–Thu', hue: 55 };
+    return {
+      states: [
+        { state: 'default', o: O.bloomingdales, note: 'Level 1 elevation' },
+        { state: 'hover', o: O.bloomingdales, note: 'Lift −2px, level 2 shadow' },
+        { state: 'saved', o: O.levelshoes, note: 'Filled heart, scale pulse' },
+        { state: 'expiring', o: O.namshi, note: 'Amber footer, ≤7 days' },
+        { state: 'expired', o: O.noon, note: 'Greyed + overlay' },
+        { state: 'skeleton', o: O.noon, note: 'Shimmer 1.2s' },
+        { state: 'sponsored', o: O.img, note: 'Disclosed label' },
+      ],
+      badges: [O.namshi, O.bloomingdales, O.lulu, O.papajohns, O.apple, bogo].filter(Boolean),
+      o1: O.namshi, o2: O.pizzaexpress, o3: O.apple,
+      chipNames: ['Online', 'In-store', 'Near me', 'Expiring soon', 'New', 'Instalments', 'Cashback', 'BOGO'],
+    };
+  }
+}
+</script>
+</body>
+</html>

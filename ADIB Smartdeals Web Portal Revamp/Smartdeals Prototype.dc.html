@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>ADIB smartdeals · clickable prototype</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&amp;family=IBM+Plex+Mono:wght@400;600&amp;display=swap">
+<script src="data.js"></script>
+<style>body{margin:0;background:#fff}a{color:#013978}a:hover{color:#00275A}</style>
+</helmet>
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><rect width="200" height="200" fill="#013978"></rect><circle cx="100" cy="100" r="44" fill="#fff"></circle><rect x="84" y="86" width="9" height="18" rx="4.5" fill="#013978"></rect><rect x="107" y="86" width="9" height="18" rx="4.5" fill="#013978"></rect><circle cx="134" cy="66" r="11" fill="#2BC79A"></circle></svg></template>
+<div style="width:100%;min-height:100vh;background:#fff">
+  <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+    <dc-import name="Home v3" proto="{{ true }}" signed-in="{{ signedIn }}" go="{{ go }}" hint-size="100%,2800px"></dc-import>
+  </sc-if>
+  <sc-if value="{{ isAll }}" hint-placeholder-val="{{ false }}">
+    <dc-import name="All Offers" view="{{ view }}" vk="{{ vk }}" cat="{{ cat }}" on-cat="{{ onCat }}" signed-in="{{ signedIn }}" go="{{ go }}" hint-size="100%,1400px"></dc-import>
+  </sc-if>
+  <sc-if value="{{ isDetail }}" hint-placeholder-val="{{ false }}">
+    <dc-import name="Offer Detail v3" proto="{{ true }}" offer-id="{{ id }}" signed-in="{{ signedIn }}" go="{{ go }}" hint-size="100%,2000px"></dc-import>
+  </sc-if>
+  <div style="position:fixed;left:16px;bottom:16px;z-index:50;display:flex;align-items:center;gap:8px;padding:6px 6px 6px 12px;border-radius:999px;background:rgba(20,23,31,.88);color:#fff;font:400 12px 'IBM Plex Sans',sans-serif;box-shadow:0 6px 20px rgba(0,0,0,.2)">
+    <span style="font-family:'IBM Plex Mono',monospace;opacity:.8">PROTOTYPE</span>
+    <span style="opacity:.6">·</span><span>{{ crumb }}</span>
+    <button onClick="{{ restart }}" style="height:28px;padding:0 10px;border-radius:999px;border:0;background:rgba(255,255,255,.14);color:#fff;font:inherit;cursor:pointer">Restart</button>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { page: 'home', id: 'namshi', signedIn: false, view: 'grid', vk: 0, cat: 'All' };
+  go = (pg, id) => {
+    if (pg === 'signin') this.setState(s => ({ signedIn: !s.signedIn, page: 'home' }));
+    else if (pg === 'map') this.setState({ page: 'all', view: 'map', cat: 'All', vk: Date.now() });
+    else if (pg === 'all') this.setState({ page: 'all', view: 'grid', cat: 'All', vk: Date.now() });
+    else if (pg === 'cat') this.setState({ page: 'all', view: 'grid', cat: id || 'All', vk: Date.now() });
+    else if (pg === 'eip') this.setState({ page: 'all', view: 'grid', cat: 'Easy Instalment Plan', vk: Date.now() });
+    else if (pg === 'detail') this.setState({ page: 'detail', id: id || this.state.id });
+    else this.setState({ page: 'home' });
+    try { window.scrollTo({ top: 0, behavior: 'instant' }); } catch (e) { window.scrollTo(0, 0); }
+  };
+  renderVals() {
+    const s = this.state;
+    const O = (window.SD && window.SD.O) || {};
+    const crumb = s.page === 'home' ? (s.signedIn ? 'Home · signed in' : 'Home · guest') : s.page === 'all' ? (s.view === 'map' ? 'All offers · map' : s.cat === 'All' ? 'All offers' : s.cat) : `Offer · ${(O[s.id] || {}).m || s.id}`;
+    return {
+      go: this.go, isHome: s.page === 'home', isAll: s.page === 'all', isDetail: s.page === 'detail',
+      id: s.id, signedIn: s.signedIn, view: s.view, vk: s.vk, cat: s.cat, crumb, onCat: (c) => this.setState({ cat: c }),
+      restart: () => { this.setState({ page: 'home', signedIn: false, view: 'grid' }); window.scrollTo(0, 0); },
+    };
+  }
+}
+</script>
+</body>
+</html>

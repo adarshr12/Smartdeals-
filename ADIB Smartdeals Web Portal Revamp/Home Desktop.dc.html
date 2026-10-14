@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&amp;family=IBM+Plex+Sans+Arabic:wght@400;600&amp;family=IBM+Plex+Mono:wght@400;600&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,400,0..1,0">
+<script src="data.js"></script>
+<style>body{margin:0;background:#F6F7F9}a{color:#013978}a:hover{color:#00275A}</style>
+</helmet>
+<div style="width:1440px;background:#F6F7F9;font-family:'IBM Plex Sans',sans-serif;color:#14171F;position:relative;height:{{ rootH }};overflow:hidden">
+  <div style="position:{{ headPos }};top:0;left:0;right:0;z-index:20">
+    <dc-import name="SiteHeader" scrolled="{{ scrolled }}" rotate="{{ false }}" hint-size="100%,64px"></dc-import>
+  </div>
+  <div style="margin-top:{{ shift }}">
+    <main style="max-width:1280px;margin:0 auto;padding:24px 0 56px;display:flex;flex-direction:column;gap:32px">
+      <section aria-roledescription="carousel" aria-label="Featured campaigns" style="position:relative">
+        <div style="display:flex;gap:12px;overflow:hidden;border-radius:16px">
+          <article aria-roledescription="slide" aria-label="1 of 2" style="flex:none;width:calc(100% - 36px);height:320px;border-radius:16px;background:#013978;color:#fff;display:grid;grid-template-columns:1fr 1fr;overflow:hidden;position:relative">
+            <div style="padding:36px 48px;display:flex;flex-direction:column;gap:12px;justify-content:flex-start">
+              <span style="align-self:flex-start;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:5px 10px;border-radius:999px;background:rgba(255,255,255,.14)">Ramadan Kareem · Dining</span>
+              <h1 style="margin:0;font-size:40px;line-height:1.1;font-weight:600;letter-spacing:-.01em">Iftar &amp; Suhoor offers</h1>
+              <p style="margin:0;font-size:20px;line-height:1.35;color:#DCE6F5">Up to 40% off at 120+ restaurants</p>
+              <div style="display:flex;gap:12px;align-items:center;margin-top:12px">
+                <a href="#" style="height:44px;display:inline-flex;align-items:center;gap:6px;padding:0 20px;border-radius:999px;background:#fff;color:#013978;font-weight:600;font-size:15px;text-decoration:none">Explore Ramadan offers<span style="font-family:'Material Symbols Rounded';font-size:20px">arrow_forward</span></a>
+                <span style="font-size:13px;color:#DCE6F5">All ADIB cards · until 9 Mar 2027</span>
+              </div>
+            </div>
+            <div style="margin:16px 16px 16px 0;border-radius:12px;background:repeating-linear-gradient(135deg,oklch(0.45 0.08 60) 0 10px,oklch(0.42 0.075 60) 10px 20px);display:grid;place-items:center">
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:rgba(255,255,255,.75)">campaign photo · iftar table</span>
+            </div>
+          </article>
+          <article aria-roledescription="slide" aria-label="2 of 2, Sponsored" style="flex:none;width:calc(100% - 36px);height:320px;border-radius:16px;background:#E3EEEA;position:relative">
+            <span style="position:absolute;top:16px;left:16px;font-size:11px;font-weight:600;padding:3px 8px;border-radius:6px;background:#fff;color:#3D4450">Sponsored</span>
+          </article>
+        </div>
+        <div style="position:absolute;left:48px;bottom:20px;display:flex;align-items:center;gap:8px">
+          <button aria-label="Previous slide" style="width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.1);color:#fff;display:grid;place-items:center;cursor:pointer"><span style="font-family:'Material Symbols Rounded';font-size:20px">chevron_left</span></button>
+          <div style="display:flex;gap:6px;padding:0 6px" aria-label="Slide 1 of 2">
+            <span style="width:20px;height:6px;border-radius:3px;background:#fff"></span>
+            <span style="width:6px;height:6px;border-radius:3px;background:rgba(255,255,255,.45)"></span>
+          </div>
+          <button aria-label="Next slide" style="width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.1);color:#fff;display:grid;place-items:center;cursor:pointer"><span style="font-family:'Material Symbols Rounded';font-size:20px">chevron_right</span></button>
+          <button aria-label="Pause slideshow" style="width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.1);color:#fff;display:grid;place-items:center;cursor:pointer;margin-left:4px"><span style="font-family:'Material Symbols Rounded';font-size:20px">pause</span></button>
+        </div>
+      </section>
+      <nav aria-label="Categories" style="display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:16px">
+        <sc-for list="{{ cats }}" as="c" hint-placeholder-count="8">
+          <a href="#" style="display:flex;flex-direction:column;align-items:center;gap:8px;text-decoration:none;color:#14171F;padding:4px 0;border-radius:12px" style-hover="color:#013978">
+            <span style="width:64px;height:64px;border-radius:20px;background:#E6EDF7;display:grid;place-items:center;color:#013978"><span style="font-family:'Material Symbols Rounded';font-size:28px">{{ c.icon }}</span></span>
+            <span style="font-size:14px">{{ c.en }}</span>
+          </a>
+        </sc-for>
+      </nav>
+      <section aria-label="Ask Maya" style="background:#fff;border-radius:16px;border:1px solid #E6E9EF;box-shadow:0 1px 2px rgba(16,24,40,.04);display:flex;align-items:center;gap:20px;padding:16px 20px 16px 20px">
+        <dc-import name="MayaAvatar" size="{{ 52 }}" style="flex:none" hint-size="52px,52px"></dc-import>
+        <div style="flex:none;display:flex;flex-direction:column;gap:2px;width:220px">
+          <b style="font-size:20px;font-weight:600;line-height:1.2">Just ask Maya</b>
+          <span style="font-size:13px;line-height:1.4;color:#5B6472">Find an offer or learn how to redeem it — no keywords needed.</span>
+        </div>
+        <div style="flex:1;display:flex;flex-direction:column;gap:10px;min-width:0">
+          <label style="height:48px;display:flex;align-items:center;gap:10px;padding:0 6px 0 16px;border-radius:999px;border:1.5px solid #013978;background:#fff">
+            <span style="flex:1;font-size:15px;color:#5B6472;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Try “pizza this afternoon near Yas Mall”</span>
+            <span aria-label="Speak" style="width:40px;height:40px;display:grid;place-items:center;color:#013978;font-family:'Material Symbols Rounded';font-size:22px">mic</span>
+            <span aria-label="Ask" style="width:40px;height:40px;border-radius:50%;background:#013978;color:#fff;display:grid;place-items:center;font-family:'Material Symbols Rounded';font-size:20px">arrow_upward</span>
+          </label>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <a href="#" style="height:32px;display:inline-flex;align-items:center;gap:6px;padding:0 12px;border-radius:999px;background:#EEF3FA;color:#013978;font-size:13px;font-weight:600;text-decoration:none"><span style="font-family:'Material Symbols Rounded';font-size:16px">restaurant</span>Iftar deals for 4 near me</a>
+            <a href="#" style="height:32px;display:inline-flex;align-items:center;gap:6px;padding:0 12px;border-radius:999px;background:#EEF3FA;color:#013978;font-size:13px;font-weight:600;text-decoration:none"><span style="font-family:'Material Symbols Rounded';font-size:16px">help</span>How do I use a promo code?</a>
+            <a href="#" style="height:32px;display:inline-flex;align-items:center;gap:6px;padding:0 12px;border-radius:999px;background:#EEF3FA;color:#013978;font-size:13px;font-weight:600;text-decoration:none"><span style="font-family:'Material Symbols Rounded';font-size:16px">calendar_month</span>0% instalments on a laptop</a>
+          </div>
+        </div>
+      </section>
+      <sc-for list="{{ rails }}" as="r" hint-placeholder-count="3">
+        <section style="display:flex;flex-direction:column;gap:14px">
+          <div style="display:flex;align-items:baseline;justify-content:space-between">
+            <div style="display:flex;flex-direction:column;gap:4px">
+              <h2 style="margin:0;font-size:20px;line-height:1.3;font-weight:600">{{ r.pre }}<sc-if value="{{ r.temporal }}" hint-placeholder-val="{{ false }}"><span style="color:#013978;background:#E6F4EF;padding:0 6px;border-radius:6px;box-shadow:inset 0 -2px 0 #2BC79A">{{ r.ctx }}</span></sc-if></h2>
+              <sc-if value="{{ r.temporal }}" hint-placeholder-val="{{ false }}"><span style="font-size:13px;color:#5B6472;display:flex;gap:4px;align-items:center"><span style="font-family:'Material Symbols Rounded';font-size:16px;color:#013978">schedule</span>{{ r.why }}</span></sc-if>
+            </div>
+            <a href="#" style="font-size:14px;font-weight:600;color:#013978;text-decoration:none;display:flex;align-items:center;gap:4px;min-height:32px">{{ r.seeAll }}<span style="font-family:'Material Symbols Rounded';font-size:18px">arrow_forward</span></a>
+          </div>
+          <div style="position:relative">
+            <div style="display:flex;gap:16px;align-items:stretch">
+              <sc-for list="{{ r.five }}" as="c" hint-placeholder-count="5">
+                <div style="flex:none;width:calc((100% - 64px) / 5);position:relative;border-radius:17px;box-shadow:{{ c.ring }};z-index:{{ c.z }}">
+                  <dc-import name="OfferCard" offer="{{ c.o }}" style="height:100%" hint-size="100%,330px"></dc-import>
+                  <sc-if value="{{ c.hl }}" hint-placeholder-val="{{ false }}">
+                    <div style="position:absolute;top:-22px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:6px;white-space:nowrap;background:#013978;color:#fff;font-size:13px;font-weight:600;padding:4px 12px 4px 4px;border-radius:999px;box-shadow:0 6px 16px rgba(1,30,70,.25)">
+                      <dc-import name="MayaAvatar" size="{{ 24 }}" hint-size="24px,24px"></dc-import>Here it is — tap to open
+                    </div>
+                  </sc-if>
+                </div>
+              </sc-for>
+            </div>
+            <sc-if value="{{ r.more }}" hint-placeholder-val="{{ true }}">
+              <button aria-label="Next offers" style="position:absolute;right:-22px;top:72px;width:44px;height:44px;border-radius:50%;border:1px solid #E6E9EF;background:#fff;box-shadow:0 4px 12px rgba(16,24,40,.12);display:grid;place-items:center;color:#013978;cursor:pointer"><span style="font-family:'Material Symbols Rounded';font-size:22px">chevron_right</span></button>
+            </sc-if>
+          </div>
+        </section>
+      </sc-for>
+    </main>
+    <footer style="background:#323644;color:#D5D9E2">
+      <div style="max-width:1280px;margin:0 auto;padding:40px 0 28px;display:grid;grid-template-columns:200px 1fr;gap:48px">
+        <img src="assets/adib-logo-footer.png" alt="ADIB" style="height:96px">
+        <div style="display:flex;flex-direction:column;gap:12px;font-size:13px;line-height:1.6">
+          <div style="display:flex;gap:32px;font-size:14px"><span><b style="color:#fff;font-weight:600">Need help?</b> customerservice@adib.ae</span><a href="#" style="color:#fff">Privacy Policy</a><a href="#" style="color:#fff">FAQs</a></div>
+          <p style="margin:0;max-width:880px">Disclaimer: maya.ai is a platform created by Crayon Data for communication of offers extended by merchants to the Bank's customers. The Bank is not selling or rendering any of these products or services and is not responsible for their sale, quality or features.</p>
+          <p style="margin:0;color:#AEB4C2">© Abu Dhabi Islamic Bank PJSC, licensed by the Central Bank of the UAE · Powered by maya.ai</p>
+        </div>
+      </div>
+    </footer>
+  </div>
+  <sc-if value="{{ showFab }}" hint-placeholder-val="{{ true }}">
+    <div style="position:absolute;right:32px;top:{{ fabTop }};z-index:25"><dc-import name="Maya" mode="fab" hint-size="190px,60px"></dc-import></div>
+  </sc-if>
+  <sc-if value="{{ chat }}" hint-placeholder-val="{{ false }}">
+    <div style="position:absolute;right:16px;top:80px;bottom:16px;z-index:25"><dc-import name="Maya" mode="panel" hint-size="400px,804px"></dc-import></div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;scrolled&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;assist&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;fab&quot;,&quot;chat&quot;],&quot;default&quot;:&quot;fab&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  componentDidMount() {
+    if (!window.SD) this.t = setInterval(() => { if (window.SD) { clearInterval(this.t); this.forceUpdate(); } }, 50);
+  }
+  componentWillUnmount() { clearInterval(this.t); }
+  renderVals() {
+    const SD = window.SD || { rails: [], cats: [] };
+    const chat = this.props.assist === 'chat';
+    const scrolled = !!this.props.scrolled || chat;
+    const all = SD.temporal ? [SD.temporal, ...SD.rails] : SD.rails;
+    return {
+      scrolled, chat, showFab: !chat,
+      fabTop: scrolled ? '816px' : '816px',
+      rootH: scrolled ? '900px' : 'auto',
+      headPos: scrolled ? 'absolute' : 'sticky',
+      shift: chat ? '-560px' : scrolled ? '-1080px' : '0',
+      cats: SD.cats,
+      rails: all.map((r, ri) => ({ ...r, pre: r.temporal ? r.pre : r.title, temporal: !!r.temporal, more: r.n > 5, seeAll: `See all (${r.n})`,
+        five: r.items.slice(0, 5).map((o, i) => { const hl = chat && ri === 0 && i === 0; return { o, hl, ring: hl ? '0 0 0 3px #fff, 0 0 0 6px #2BC79A, 0 0 0 14px rgba(43,199,154,.18)' : 'none', z: hl ? 2 : 'auto' }; }) })),
+    };
+  }
+}
+</script>
+</body>
+</html>

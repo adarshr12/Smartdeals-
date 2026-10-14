@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&amp;family=IBM+Plex+Sans+Arabic:wght@400;600&amp;family=IBM+Plex+Mono:wght@400;600&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,400,0..1,0">
+<script src="data.js"></script>
+<style>body{margin:0;background:#F6F7F9}a{color:#013978}a:hover{color:#00275A}</style>
+</helmet>
+<div style="width:390px;background:#F6F7F9;font-family:'IBM Plex Sans',sans-serif;color:#14171F;position:relative;height:{{ rootH }};overflow:hidden">
+  <div style="position:sticky;top:0;z-index:20">
+    <dc-import name="SiteHeader" mobile="{{ true }}" scrolled="{{ true }}" query="Offers near me" rotate="{{ false }}" hint-size="100%,64px"></dc-import>
+    <div style="background:#fff;border-bottom:1px solid #E6E9EF;display:flex;gap:8px;padding:10px 16px;overflow:hidden">
+      <button style="flex:none;height:36px;display:flex;align-items:center;gap:6px;padding:0 12px 0 10px;border-radius:999px;border:1px solid #013978;background:#EEF3FA;color:#013978;font:inherit;font-size:14px;font-weight:600"><span style="font-family:'Material Symbols Rounded';font-size:18px">tune</span>Filters · 2</button>
+      <button style="flex:none;height:36px;display:flex;align-items:center;gap:2px;padding:0 8px 0 14px;border-radius:999px;border:1px solid #C9D1DD;background:#fff;color:#14171F;font:inherit;font-size:14px">Sort<span style="font-family:'Material Symbols Rounded';font-size:18px">expand_more</span></button>
+      <button aria-pressed="false" style="flex:none;height:36px;padding:0 14px;border-radius:999px;border:1px solid #C9D1DD;background:#fff;color:#14171F;font:inherit;font-size:14px">Online</button>
+      <button aria-pressed="true" style="flex:none;height:36px;display:flex;align-items:center;gap:4px;padding:0 8px 0 14px;border-radius:999px;border:1px solid #013978;background:#013978;color:#fff;font:inherit;font-size:14px">In-store<span style="font-family:'Material Symbols Rounded';font-size:18px">close</span></button>
+      <button aria-pressed="false" style="flex:none;height:36px;padding:0 14px;border-radius:999px;border:1px solid #C9D1DD;background:#fff;color:#14171F;font:inherit;font-size:14px">Near me</button>
+    </div>
+  </div>
+  <main style="padding:14px 16px 32px;display:flex;flex-direction:column;gap:12px">
+    <div style="display:flex;align-items:center;justify-content:space-between">
+      <span style="font-size:16px;font-weight:600">128 offers</span>
+      <button style="height:44px;display:flex;align-items:center;gap:2px;border:0;background:transparent;font:inherit;font-size:14px;color:#14171F;padding:0"><span style="color:#5B6472">Sort:</span>&nbsp;<b style="font-weight:600">Recommended</b><span style="font-family:'Material Symbols Rounded';font-size:18px">expand_more</span></button>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:-6px">
+      <span style="height:32px;display:inline-flex;align-items:center;gap:2px;padding:0 4px 0 12px;border-radius:999px;background:#E6EDF7;color:#013978;font-size:13px;font-weight:600">In-store<span style="width:28px;height:28px;display:grid;place-items:center;font-family:'Material Symbols Rounded';font-size:16px">close</span></span>
+      <span style="height:32px;display:inline-flex;align-items:center;gap:2px;padding:0 4px 0 12px;border-radius:999px;background:#E6EDF7;color:#013978;font-size:13px;font-weight:600">Visa Infinite<span style="width:28px;height:28px;display:grid;place-items:center;font-family:'Material Symbols Rounded';font-size:16px">close</span></span>
+      <a href="#" style="font-size:13px;font-weight:600;color:#013978;padding:8px 4px">Clear all</a>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px">
+      <sc-for list="{{ items }}" as="o" hint-placeholder-count="6">
+        <dc-import name="OfferCard" offer="{{ o }}" compact="{{ true }}" hint-size="100%,290px"></dc-import>
+      </sc-for>
+    </div>
+  </main>
+  <sc-if value="{{ sheet }}" hint-placeholder-val="{{ false }}">
+    <div style="position:absolute;inset:0;background:rgba(10,22,44,.45);z-index:30"></div>
+    <section role="dialog" aria-modal="true" aria-label="Filters" style="position:absolute;left:0;right:0;bottom:0;height:85%;background:#fff;border-radius:20px 20px 0 0;z-index:31;display:flex;flex-direction:column;box-shadow:0 -8px 32px rgba(10,22,44,.2)">
+      <div style="display:grid;place-items:center;padding-top:8px"><span style="width:36px;height:4px;border-radius:2px;background:#C9D1DD"></span></div>
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:4px 8px 8px 16px;border-bottom:1px solid #E6E9EF">
+        <h2 style="margin:0;font-size:20px;font-weight:600">Filters</h2>
+        <button aria-label="Close filters" style="width:44px;height:44px;border:0;background:transparent;display:grid;place-items:center;color:#14171F"><span style="font-family:'Material Symbols Rounded';font-size:24px">close</span></button>
+      </div>
+      <div style="flex:1;display:grid;grid-template-columns:132px 1fr;min-height:0">
+        <div role="tablist" aria-orientation="vertical" style="background:#F6F7F9;display:flex;flex-direction:column">
+          <sc-for list="{{ facets }}" as="f" hint-placeholder-count="6">
+            <div role="tab" aria-selected="{{ f.on }}" style="min-height:52px;display:flex;align-items:center;justify-content:space-between;gap:4px;padding:0 10px 0 14px;font-size:14px;font-weight:{{ f.w }};background:{{ f.bg }};border-left:3px solid {{ f.bar }};color:#14171F">
+              <span>{{ f.l }}</span>
+              <sc-if value="{{ f.count }}" hint-placeholder-val="{{ false }}"><span style="min-width:20px;height:20px;border-radius:10px;background:#013978;color:#fff;font-size:11px;font-weight:600;display:grid;place-items:center">{{ f.count }}</span></sc-if>
+            </div>
+          </sc-for>
+        </div>
+        <div style="padding:8px 16px;display:flex;flex-direction:column;overflow:hidden">
+          <span style="font-size:13px;color:#5B6472;padding:8px 0">Offer type · pick any</span>
+          <sc-for list="{{ opts }}" as="o" hint-placeholder-count="6">
+            <label style="min-height:52px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #EEF0F3;font-size:15px">
+              <span style="font-family:'Material Symbols Rounded';font-size:24px;color:{{ o.c }};font-variation-settings:{{ o.fill }}">{{ o.icon }}</span>
+              <span style="flex:1;line-height:1.3">{{ o.l }}</span>
+              <span style="font-size:13px;color:#5B6472">{{ o.n }}</span>
+            </label>
+          </sc-for>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;padding:12px 16px 30px;border-top:1px solid #E6E9EF;box-shadow:0 -4px 12px rgba(16,24,40,.06)">
+        <button style="height:48px;padding:0 12px;border:0;background:transparent;font:inherit;font-size:15px;font-weight:600;color:#013978;text-decoration:underline">Clear all</button>
+        <button style="flex:1;height:52px;border-radius:999px;border:0;background:#013978;color:#fff;font:inherit;font-size:16px;font-weight:600">Show 128 offers</button>
+      </div>
+    </section>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;sheet&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;}}">
+class Component extends DCLogic {
+  componentDidMount() {
+    if (!window.SD) this.t = setInterval(() => { if (window.SD) { clearInterval(this.t); this.forceUpdate(); } }, 50);
+  }
+  componentWillUnmount() { clearInterval(this.t); }
+  renderVals() {
+    const SD = window.SD, sheet = !!this.props.sheet;
+    const facets = [['Sort'], ['Category'], ['Offer type', 1], ['Your card', 1], ['Location'], ['Discount value']];
+    const opts = [['Online · Code', 412], ['Online · No code', 268], ['In-store · Pay with card', 128, 1], ['In-store · Show voucher', 74], ['0% EPP instalments', 36], ['BOGO', 12]];
+    return {
+      sheet, rootH: sheet ? '844px' : 'auto',
+      items: SD ? SD.pick(['pizzaexpress', 'aldana', 'lulu', 'homer', 'papajohns', 'funcity']) : [],
+      facets: facets.map(([l, c], i) => ({ l, count: c || 0, on: i === 2, w: i === 2 ? 600 : 400, bg: i === 2 ? '#fff' : 'transparent', bar: i === 2 ? '#013978' : 'transparent' })),
+      opts: opts.map(([l, n, on]) => ({ l, n, icon: on ? 'check_box' : 'check_box_outline_blank', c: on ? '#013978' : '#5B6472', fill: on ? "'FILL' 1" : "'FILL' 0" })),
+    };
+  }
+}
+</script>
+</body>
+</html>

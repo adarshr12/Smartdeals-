@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<span aria-hidden="true" style="position:relative;display:block;width:{{ s }}px;height:{{ s }}px;border-radius:50%;background:#013978;box-shadow:0 0 0 2px #fff,0 4px 12px rgba(1,30,70,.25)">
+  <span style="position:absolute;top:38%;left:50%;transform:translateX(-50%);display:flex;gap:{{ eyeGap }}px">
+    <span style="width:{{ eyeW }}px;height:{{ eyeH }}px;border-radius:999px;background:#fff"></span>
+    <span style="width:{{ eyeW }}px;height:{{ eyeH }}px;border-radius:999px;background:#fff"></span>
+  </span>
+  <span style="position:absolute;top:2%;right:2%;width:{{ dot }}px;height:{{ dot }}px;border-radius:50%;background:#2BC79A;box-shadow:0 0 0 2px #fff"></span>
+</span>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:64,&quot;height&quot;:64},&quot;size&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:48,&quot;tsType&quot;:&quot;number&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const s = this.props.size || 48;
+    return { s, eyeW: Math.max(3, Math.round(s * 0.11)), eyeH: Math.max(5, Math.round(s * 0.2)), eyeGap: Math.round(s * 0.14), dot: Math.max(6, Math.round(s * 0.24)) };
+  }
+}
+</script>
+</body>
+</html>

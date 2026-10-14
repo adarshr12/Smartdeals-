@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&amp;family=IBM+Plex+Sans+Arabic:wght@400;600&amp;family=IBM+Plex+Mono:wght@400;600&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,400,0..1,0">
+<script src="data.js"></script>
+<style>body{margin:0;background:#FFFFFF}a{color:#013978}a:hover{color:#00275A}
+@keyframes sdRise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes sdFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}</style>
+</helmet>
+<div style="width:100%;background:#FFFFFF;font-family:'IBM Plex Sans',sans-serif;color:#14171F;position:relative">
+  <div style="position:sticky;top:0;z-index:20">
+    <dc-import name="SiteHeader" nav="{{ true }}" signed-in="{{ signedIn }}" active="home" go="{{ go }}" hint-size="100%,64px"></dc-import>
+  </div>
+  <section aria-label="Search offers" style="background:#F5F8FC;border-bottom:1px solid #EDF1F6">
+    <div style="max-width:1360px;margin:0 auto;padding:clamp(28px,4vw,48px) clamp(16px,3vw,40px) clamp(24px,3vw,36px);box-sizing:border-box;display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center">
+      <h1 style="margin:0;font-size:clamp(24px,2.4vw,32px);line-height:1.2;font-weight:600;letter-spacing:-.01em;text-wrap:balance">{{ greeting }}</h1>
+      <div style="width:100%;max-width:760px;height:56px;display:flex;align-items:center;background:#fff;border:1px solid #CBD5E3;border-radius:16px;box-shadow:0 4px 16px rgba(1,57,120,.06);padding:0 6px;box-sizing:border-box">
+        <button style="flex:none;height:44px;display:flex;align-items:center;gap:4px;padding:0 12px;border:0;border-right:1px solid #E6E9EF;border-radius:0;background:transparent;font:inherit;font-size:14px;color:#14171F;white-space:nowrap"><span style="font-family:'Material Symbols Rounded';font-size:20px;color:#013978">location_on</span>Abu Dhabi<span style="font-family:'Material Symbols Rounded';font-size:18px;color:#5B6472">expand_more</span></button>
+        <span style="flex:1;min-width:0;text-align:left;padding:0 14px;font-size:16px;color:#5B6472;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Search a merchant, category, or just ask</span>
+        <button onClick="{{ toggleChat }}" aria-label="Ask Maya" style="flex:none;height:44px;display:flex;align-items:center;gap:6px;padding:0 10px;border:0;background:transparent;font:inherit;font-size:14px;font-weight:600;color:#013978;white-space:nowrap"><dc-import name="MayaAvatar" size="{{ 24 }}" hint-size="24px,24px"></dc-import>Ask Maya</button>
+        <button onClick="{{ goAll }}" style="flex:none;height:44px;display:flex;align-items:center;gap:6px;padding:0 18px;border:0;border-radius:12px;background:#013978;color:#fff;font:inherit;font-size:15px;font-weight:600"><span style="font-family:'Material Symbols Rounded';font-size:20px">search</span>Search</button>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:8px 16px;font-size:14px;color:#5B6472">
+        <span>Popular:</span>
+        <a href="#" onClick="{{ goAll }}" style="text-decoration:none">Iftar</a><a href="#" onClick="{{ goAll }}" style="text-decoration:none">Namshi</a><a href="#" onClick="{{ goEip }}" style="text-decoration:none">Electronics EIP</a><a href="#" onClick="{{ goAll }}" style="text-decoration:none">Staycations</a>
+      </div>
+    </div>
+  </section>
+  <main style="max-width:1360px;margin:0 auto;padding:clamp(24px,3vw,40px) clamp(16px,3vw,40px) 72px;box-sizing:border-box;display:flex;flex-direction:column;gap:clamp(36px,4vw,56px)">
+    <section aria-roledescription="carousel" aria-label="Campaigns" style="display:flex;flex-direction:column;gap:12px;align-items:center">
+      <div onClick="{{ goAll }}" role="link" aria-label="Open Ramadan dining offers" style="cursor:pointer;width:100%;max-width:{{ bannerW }}px;aspect-ratio:{{ bannerRatio }};border-radius:16px;overflow:hidden;background:repeating-linear-gradient(135deg,#EEF3F9 0 12px,#F6F9FC 12px 24px);border:1px solid #E3E9F1;display:grid;place-items:center;position:relative">
+        <img src="{{ bannerSrc }}" alt="Iftar &amp; Suhoor offers — up to 40% off at 120+ restaurants" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block">
+      </div>
+      <div style="display:flex;align-items:center;gap:8px">
+        <button aria-label="Previous banner" style="width:36px;height:36px;border-radius:50%;border:1px solid #D5DAE2;background:#fff;color:#013978;display:grid;place-items:center"><span style="font-family:'Material Symbols Rounded';font-size:20px">chevron_left</span></button>
+        <div style="display:flex;gap:6px;padding:0 6px" aria-label="Banner 1 of 3"><span style="width:20px;height:6px;border-radius:3px;background:#013978"></span><span style="width:6px;height:6px;border-radius:3px;background:#C9D1DD"></span><span style="width:6px;height:6px;border-radius:3px;background:#C9D1DD"></span></div>
+        <button aria-label="Next banner" style="width:36px;height:36px;border-radius:50%;border:1px solid #D5DAE2;background:#fff;color:#013978;display:grid;place-items:center"><span style="font-family:'Material Symbols Rounded';font-size:20px">chevron_right</span></button>
+        <button aria-label="Pause" style="width:36px;height:36px;border-radius:50%;border:1px solid #D5DAE2;background:#fff;color:#013978;display:grid;place-items:center"><span style="font-family:'Material Symbols Rounded';font-size:18px">pause</span></button>
+      </div>
+    </section>
+    <nav aria-label="Categories" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(96px,1fr));gap:16px 8px;margin-top:-8px">
+      <sc-for list="{{ cats }}" as="c" hint-placeholder-count="7">
+        <a href="#" onClick="{{ c.go }}" style="display:flex;flex-direction:column;align-items:center;gap:10px;text-decoration:none;color:#14171F;padding:6px 0;border-radius:16px" style-hover="color:#013978">
+          <span style="width:60px;height:60px;border-radius:20px;background:#F0F4F9;display:grid;place-items:center;color:#013978;transition:background .15s"><span style="font-family:'Material Symbols Rounded';font-size:26px">{{ c.icon }}</span></span>
+          <span style="font-size:14px">{{ c.en }}</span>
+        </a>
+      </sc-for>
+    </nav>
+    <sc-if value="{{ guest }}" hint-placeholder-val="{{ true }}">
+      <section aria-label="Optional sign in" style="display:flex;align-items:center;gap:16px;padding:16px 20px;border-radius:16px;background:#F5F8FC;border:1px solid #E3E9F1;flex-wrap:wrap">
+        <span style="width:40px;height:40px;flex:none;border-radius:12px;background:#fff;border:1px solid #E3E9F1;display:grid;place-items:center;color:#013978;font-family:'Material Symbols Rounded';font-size:22px">person</span>
+        <div style="flex:1;min-width:240px;display:flex;flex-direction:column;gap:2px">
+          <b style="font-size:16px;font-weight:600">Want offers picked for you?</b>
+          <span style="font-size:14px;color:#3D4450">Sign in to see your personalised lists and offers for your card. It’s optional — everything else works without it.</span>
+        </div>
+        <a href="#" onClick="{{ goSignin }}" style="flex:none;height:40px;display:inline-flex;align-items:center;padding:0 18px;border-radius:999px;border:1px solid #013978;color:#013978;font-size:14px;font-weight:600;text-decoration:none">Sign in</a>
+        <button onClick="{{ dismiss }}" aria-label="Dismiss" style="flex:none;width:40px;height:40px;border:0;background:transparent;color:#5B6472;display:grid;place-items:center"><span style="font-family:'Material Symbols Rounded';font-size:20px">close</span></button>
+      </section>
+    </sc-if>
+    <sc-for list="{{ listsA }}" as="r" hint-placeholder-count="3">
+      <section style="display:flex;flex-direction:column;gap:16px">
+        <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+          <span style="width:36px;height:36px;flex:none;border-radius:12px;background:{{ r.tint }};color:{{ r.solid }};display:grid;place-items:center;font-family:'Material Symbols Rounded';font-size:20px">{{ r.icon }}</span>
+          <div style="display:flex;flex-direction:column;gap:2px;min-width:0">
+            <h2 style="margin:0;font-size:20px;line-height:1.3;font-weight:600">{{ r.pre }}<sc-if value="{{ r.temporal }}" hint-placeholder-val="{{ false }}"><span style="color:{{ r.text }}">{{ r.ctx }}</span></sc-if></h2>
+            <sc-if value="{{ r.hasSub }}" hint-placeholder-val="{{ false }}"><span style="font-size:13px;color:#5B6472">{{ r.sub }}</span></sc-if>
+          </div>
+          <sc-if value="{{ r.urgent }}" hint-placeholder-val="{{ false }}"><span style="font-size:12px;font-weight:600;color:#B42318;background:#FEEFEE;padding:3px 10px;border-radius:999px">Ends within 7 days</span></sc-if>
+          <span style="flex:1"></span>
+          <a href="#" onClick="{{ goAll }}" style="font-size:14px;font-weight:600;color:#013978;text-decoration:none;display:flex;align-items:center;gap:4px;min-height:40px">{{ r.seeAll }}<span style="font-family:'Material Symbols Rounded';font-size:18px">arrow_forward</span></a>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(232px,1fr));grid-template-rows:auto;grid-auto-rows:0;column-gap:20px;row-gap:0;overflow:hidden;padding:4px;margin:-4px">
+          <sc-for list="{{ r.items }}" as="c" hint-placeholder-count="5">
+            <dc-import name="OfferCard" offer="{{ c.o }}" delay="{{ c.d }}" show-reason="{{ r.reasons }}" go="{{ go }}" hint-size="100%,340px"></dc-import>
+          </sc-for>
+        </div>
+      </section>
+    </sc-for>
+    <section aria-labelledby="near" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:clamp(20px,3vw,40px);align-items:stretch">
+      <div style="display:flex;flex-direction:column;gap:16px;max-width:520px">
+        <div style="display:flex;align-items:center;gap:12px">
+          <span style="width:36px;height:36px;flex:none;border-radius:12px;background:#E8F6F3;color:#0E9384;display:grid;place-items:center;font-family:'Material Symbols Rounded';font-size:20px">near_me</span>
+          <div style="display:flex;flex-direction:column;gap:2px">
+            <h2 id="near" style="margin:0;font-size:20px;line-height:1.3;font-weight:600">Offers near you</h2>
+            <span style="font-size:13px;color:#5B6472">18 within 5 km · Al Reem, Abu Dhabi</span>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column">
+          <sc-for list="{{ nearby }}" as="n" hint-placeholder-count="3">
+            <a href="#" onClick="{{ n.open }}" style="display:flex;align-items:center;gap:14px;padding:14px 4px;border-bottom:1px solid #EEF0F3;text-decoration:none;color:#14171F" style-hover="background:#F8FAFC">
+              <img src="{{ n.img }}" alt="" style="width:52px;height:52px;flex:none;border-radius:12px;object-fit:cover;background:#F0F4F9">
+              <span style="flex:1;min-width:0;display:flex;flex-direction:column;line-height:1.35">
+                <span style="font-size:15px">{{ n.m }}</span>
+                <span style="font-size:13px;color:#5B6472">{{ n.where }}</span>
+              </span>
+              <span style="display:flex;flex-direction:column;align-items:flex-end;line-height:1.35">
+                <b style="font-size:16px;font-weight:600;color:#00775F">{{ n.value }}</b>
+                <span style="font-size:12px;font-weight:600;color:{{ n.endsColor }}">{{ n.ends }}</span>
+              </span>
+            </a>
+          </sc-for>
+        </div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <a href="#" onClick="{{ goMap }}" style="height:44px;display:inline-flex;align-items:center;gap:6px;padding:0 18px;border-radius:999px;background:#013978;color:#fff;font-size:14px;font-weight:600;text-decoration:none"><span style="font-family:'Material Symbols Rounded';font-size:18px">map</span>Open full map</a>
+          <a href="#" style="height:44px;display:inline-flex;align-items:center;gap:6px;padding:0 16px;border-radius:999px;border:1px solid #CBD5E3;color:#013978;font-size:14px;font-weight:600;text-decoration:none"><span style="font-family:'Material Symbols Rounded';font-size:18px">edit_location_alt</span>Change area</a>
+        </div>
+      </div>
+      <div style="position:relative;min-height:360px;border-radius:20px;overflow:hidden;border:1px solid #E3E9F1">
+        <iframe title="Map of offers near you" srcdoc="{{ mapDoc }}" style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe>
+      </div>
+    </section>
+    <section aria-labelledby="eip" style="display:grid;grid-template-columns:minmax(260px,340px) minmax(0,1fr);gap:clamp(20px,3vw,40px);align-items:start;padding:clamp(20px,2.5vw,32px);border-radius:24px;background:#F3F1FE;border:1px solid #E4DFFC">
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <span style="width:44px;height:44px;border-radius:14px;background:#fff;color:#6941C6;display:grid;place-items:center;font-family:'Material Symbols Rounded';font-size:24px">calendar_month</span>
+        <h2 id="eip" style="margin:0;font-size:24px;line-height:1.2;font-weight:600">Easy Instalment Plan</h2>
+        <span style="font-size:15px;line-height:1.5;color:#3D4450">Convert purchases of AED 1,000+ into 3, 6 or 12 monthly instalments with a 100% waiver of Murabaha monthly profit.</span>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <span style="height:30px;display:inline-flex;align-items:center;padding:0 12px;border-radius:999px;background:#fff;font-size:13px;font-weight:600;color:#53389E">100% profit waiver</span>
+          <span style="height:30px;display:inline-flex;align-items:center;padding:0 12px;border-radius:999px;background:#fff;font-size:13px;font-weight:600;color:#53389E">No processing fees</span>
+          <span style="height:30px;display:inline-flex;align-items:center;padding:0 12px;border-radius:999px;background:#fff;font-size:13px;font-weight:600;color:#53389E">From AED 1,000</span>
+        </div>
+        <a href="#" onClick="{{ goEip }}" style="align-self:flex-start;margin-top:4px;height:44px;display:inline-flex;align-items:center;gap:6px;padding:0 20px;border-radius:999px;background:#013978;color:#fff;font-size:14px;font-weight:600;text-decoration:none"><span>See all EIP offers ({{ eipCount }})</span><span style="font-family:'Material Symbols Rounded';font-size:18px">arrow_forward</span></a>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));grid-template-rows:auto;grid-auto-rows:0;column-gap:20px;row-gap:0;overflow:hidden;padding:4px;margin:-4px">
+        <sc-for list="{{ eipItems }}" as="c" hint-placeholder-count="3">
+          <dc-import name="OfferCard" offer="{{ c.o }}" delay="{{ c.d }}" show-reason="{{ false }}" go="{{ go }}" hint-size="100%,340px"></dc-import>
+        </sc-for>
+      </div>
+    </section>
+    <sc-for list="{{ listsB }}" as="r" hint-placeholder-count="3">
+      <section style="display:flex;flex-direction:column;gap:16px">
+        <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+          <span style="width:36px;height:36px;flex:none;border-radius:12px;background:{{ r.tint }};color:{{ r.solid }};display:grid;place-items:center;font-family:'Material Symbols Rounded';font-size:20px">{{ r.icon }}</span>
+          <div style="display:flex;flex-direction:column;gap:2px;min-width:0">
+            <h2 style="margin:0;font-size:20px;line-height:1.3;font-weight:600">{{ r.pre }}<sc-if value="{{ r.temporal }}" hint-placeholder-val="{{ false }}"><span style="color:{{ r.text }}">{{ r.ctx }}</span></sc-if></h2>
+            <sc-if value="{{ r.hasSub }}" hint-placeholder-val="{{ false }}"><span style="font-size:13px;color:#5B6472">{{ r.sub }}</span></sc-if>
+          </div>
+          <sc-if value="{{ r.urgent }}" hint-placeholder-val="{{ false }}"><span style="font-size:12px;font-weight:600;color:#B42318;background:#FEEFEE;padding:3px 10px;border-radius:999px">Ends within 7 days</span></sc-if>
+          <span style="flex:1"></span>
+          <a href="#" onClick="{{ goAll }}" style="font-size:14px;font-weight:600;color:#013978;text-decoration:none;display:flex;align-items:center;gap:4px;min-height:40px">{{ r.seeAll }}<span style="font-family:'Material Symbols Rounded';font-size:18px">arrow_forward</span></a>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(232px,1fr));grid-template-rows:auto;grid-auto-rows:0;column-gap:20px;row-gap:0;overflow:hidden;padding:4px;margin:-4px">
+          <sc-for list="{{ r.items }}" as="c" hint-placeholder-count="5">
+            <dc-import name="OfferCard" offer="{{ c.o }}" delay="{{ c.d }}" show-reason="{{ r.reasons }}" go="{{ go }}" hint-size="100%,340px"></dc-import>
+          </sc-for>
+        </div>
+      </section>
+    </sc-for>
+  </main>
+  <footer style="background:#F5F8FC;border-top:1px solid #E3E9F1;color:#3D4450">
+    <div style="max-width:1360px;margin:0 auto;padding:32px clamp(16px,3vw,40px);box-sizing:border-box;display:flex;flex-wrap:wrap;gap:16px 40px;align-items:center;font-size:13px;line-height:1.6">
+      <b style="color:#14171F;font-weight:600">ADIB smartdeals</b>
+      <a href="#">Privacy Policy</a><a href="#">FAQs</a><span>customerservice@adib.ae</span>
+      <span style="flex-basis:100%;max-width:900px">Offers are extended by merchants. The Bank facilitates payment only and is not responsible for the sale, quality or features of products and services. Powered by maya.ai</span>
+    </div>
+  </footer>
+  <sc-if value="{{ chat }}" hint-placeholder-val="{{ false }}">
+    <div style="position:{{ fabPos }};right:16px;top:{{ chatTop }};bottom:16px;z-index:30;height:{{ chatH }}"><dc-import name="Maya" mode="panel" on-close="{{ toggleChat }}" hint-size="400px,640px"></dc-import></div>
+  </sc-if>
+  <div style="position:{{ fabPos }};right:clamp(16px,2.5vw,32px);top:{{ fabTop }};bottom:{{ fabBottom }};z-index:25;animation:sdFloat 3.6s ease-in-out infinite">
+    <button onClick="{{ toggleChat }}" aria-label="Ask Maya, your offers assistant" style="width:60px;height:60px;border-radius:50%;border:0;background:#fff;box-shadow:0 8px 24px rgba(1,30,70,.2);display:grid;place-items:center;cursor:pointer"><dc-import name="MayaAvatar" size="{{ 46 }}" hint-size="46px,46px"></dc-import></button>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;signedIn&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;bannerWidth&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:1280,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Banner&quot;},&quot;bannerHeight&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:320,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Banner&quot;},&quot;fabTop&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;760px&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  state = { dismissed: false, chat: false };
+  componentDidMount() {
+    if (!window.SD) this.t = setInterval(() => { if (window.SD) { clearInterval(this.t); this.forceUpdate(); } }, 50);
+  }
+  componentWillUnmount() { clearInterval(this.t); }
+  renderVals() {
+    const SD = window.SD || { rails: [], cats: [] };
+    const signedIn = !!this.props.signedIn, proto = !!this.props.proto;
+    const go = this.props.go || (() => {});
+    const nav = (pg, id) => (e) => { if (e && e.preventDefault) e.preventDefault(); go(pg, id); };
+    const bw = this.props.bannerWidth || 1280, bh = this.props.bannerHeight || 320;
+    const T = {
+      temporal: { solid: '#DC6803', text: '#B54708', tint: '#FFF4E6', icon: 'schedule' },
+      'Discover something new': { solid: '#2E7BF6', tint: '#EDF3FF', icon: 'explore', sub: 'Picked for you' },
+      'More of what you like': { solid: '#7A5AF8', tint: '#F3F0FE', icon: 'favorite', sub: 'Based on offers you opened' },
+      'Exciting offers around you': { solid: '#0E9384', tint: '#E8F6F3', icon: 'near_me', sub: 'Using your location, Abu Dhabi' },
+      'Expiring Soon': { solid: '#D92D20', tint: '#FEEFEE', icon: 'timer', urgent: true },
+      'Deals of the day': { solid: '#DD2590', tint: '#FDEEF6', icon: 'bolt', sub: 'Refreshed every morning' },
+      'Best-selling offers': { solid: '#013978', tint: '#EAF0F8', icon: 'trending_up', sub: 'Most redeemed by ADIB cardholders this week' },
+      'Fresh out of the box': { solid: '#0E9384', tint: '#E8F6F3', icon: 'fiber_new', sub: 'Added in the last 7 days' },
+    };
+    const R = Object.fromEntries(SD.rails.map(r => [r.title, r]));
+    const order = signedIn
+      ? [SD.temporal, R['Discover something new'], R['More of what you like'], R['Expiring Soon'], R['Deals of the day'], R['Best-selling offers']]
+      : [R['Deals of the day'], R['Expiring Soon'], R['Best-selling offers'], R['Fresh out of the box']];
+    const lists = order.filter(Boolean).map(r => {
+      const t = r.temporal ? T.temporal : (T[r.title] || {});
+      const sub = r.temporal ? r.why : t.sub;
+      return { ...r, ...t, temporal: !!r.temporal, urgent: !!t.urgent, pre: r.temporal ? r.pre : r.title, sub, hasSub: !!sub,
+        reasons: signedIn, seeAll: `See all (${r.n})`, items: r.items.slice(0, 6).map((o, i) => ({ o, d: i * 60 })) };
+    });
+    return {
+      signedIn, guest: !signedIn && !this.state.dismissed, go, goAll: nav('all'), goMap: nav('map'), goSignin: nav('signin'),
+      dismiss: () => this.setState({ dismissed: true }), chat: this.state.chat, toggleChat: () => this.setState(s => ({ chat: !s.chat })),
+      fabPos: proto ? 'fixed' : 'absolute', fabBottom: proto ? '24px' : 'auto', chatTop: proto ? '80px' : '80px', chatH: proto ? 'auto' : '640px',
+      greeting: signedIn ? 'Welcome back, Fatima. What are you looking for?' : 'Find offers for your ADIB card',
+      bannerSrc: (window.SD_IMG && window.SD_IMG['assets/banner-ramadan.jpg']) || 'assets/banner-ramadan.jpg', mapDoc: window.SD_MAPDOC ? window.SD_MAPDOC('mini=1&near=1') : '', bannerW: bw, bannerH: bh, bannerRatio: `${bw} / ${bh}`,
+      fabTop: proto ? 'auto' : (this.props.fabTop || '760px'),
+      cats: (SD.cats || []).map(c => ({ ...c, go: nav(c.eip ? 'eip' : 'cat', c.en) })), goEip: nav('eip'), eipCount: String((SD.eip || []).length), eipItems: (SD.eip || []).slice(0, 4).map((o, i) => ({ o, d: i * 60 })), listsA: lists.slice(0, signedIn ? 2 : 1), listsB: lists.slice(signedIn ? 2 : 1),
+      nearby: [['PZ', 'Pizza Zone', 'Al Reem · 0.9 km', '25% off', 'Open now', '#107569'], ['HL', 'Homer Lobster', 'Galleria Al Maryah · 1.1 km', '15% off', 'Ends in 8 days', '#5B6472'], ['J', 'Jumbo Electronics', 'Abu Dhabi Mall · 1.4 km', 'EIP', 'Open now', '#107569'], ['PJ', 'Papa Johns', 'Al Wahda Mall · 2.4 km', '15% off', 'Open now', '#107569']].map(([ini, m, where, value, ends, endsColor], i) => ({ ini, m, where, value, ends, endsColor, img: (SD.O[['pizzazone', 'homer', 'jumbo', 'papajohns'][i]] || {}).img, open: nav('detail', ['pizzazone', 'homer', 'jumbo', 'papajohns'][i]) })),
+    };
+  }
+}
+</script>
+</body>
+</html>

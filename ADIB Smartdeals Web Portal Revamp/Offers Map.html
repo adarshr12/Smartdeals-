@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Offers map</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha384-sHL9NAb7lN7rfvG5lfHpm643Xkcjzp4jFvuavGOndn6pjVqS6ny56CAt3nsEVT4H" crossorigin="anonymous">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha384-cxOPjt7s7Iz04uaHJceBmS+qpjv2JkIHNVcuOrM+YHwZOmJGBXI00mdUXEq65HTH" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&display=swap">
+<style>
+html,body,#map{margin:0;height:100%;font-family:'IBM Plex Sans',sans-serif}
+#map{background:#EEF1F5;background-image:radial-gradient(#DCE2EA 1px,transparent 1px);background-size:18px 18px}
+.leaflet-tile{filter:saturate(.6)}
+
+body.dark #map{background:#0b1b33}
+
+.pin{display:inline-flex;width:max-content;align-items:center;gap:4px;white-space:nowrap;transform:translate(-50%,-100%);background:#013978;color:#fff;font:600 12px/1 'IBM Plex Sans';padding:7px 10px;border-radius:999px;box-shadow:0 4px 12px rgba(1,30,70,.35);border:2px solid #fff;animation:drop .5s cubic-bezier(.2,.8,.2,1.2) both;position:relative}
+.pin:after{content:"";position:absolute;left:50%;bottom:-7px;margin-left:-5px;border:5px solid transparent;border-top-color:#fff;border-bottom:0}
+.pin.sel{background:#00775F;font-size:14px;padding:9px 14px;z-index:2}
+.pin.red{background:#D92D20}
+.me{width:16px;height:16px;border-radius:50%;background:#2E7BF6;border:3px solid #fff;box-shadow:0 0 0 0 rgba(46,123,246,.5);animation:ping 2s infinite;transform:translate(-50%,-50%)}
+@keyframes drop{from{opacity:0;transform:translate(-50%,-140%)}to{opacity:1;transform:translate(-50%,-100%)}}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(46,123,246,.5)}80%{box-shadow:0 0 0 22px rgba(46,123,246,0)}100%{box-shadow:0 0 0 0 rgba(46,123,246,0)}}
+@media (prefers-reduced-motion:reduce){.pin,.me{animation:none}}
+.leaflet-div-icon{background:none;border:0}
+.leaflet-popup-content-wrapper{border-radius:16px;box-shadow:0 12px 32px rgba(16,24,40,.22)}
+.leaflet-popup-content{margin:14px 16px;font-family:'IBM Plex Sans'}
+.pop b{display:block;font-size:20px;color:#00775F;font-weight:600}
+.pop span{display:block;font-size:13px;color:#3D4450;margin-top:2px}
+.pop a{display:inline-flex;margin-top:10px;height:36px;align-items:center;padding:0 14px;border-radius:999px;background:#013978;color:#fff!important;text-decoration:none;font-weight:600;font-size:13px}
+.leaflet-control-attribution{font-size:10px}
+</style>
+</head>
+<body>
+<div id="map"></div>
+<script>
+const q = new URLSearchParams(window.__Q || location.search);
+const mini = q.get('mini') === '1', sel = q.get('sel') || (mini ? '' : 'pizzaexpress');
+document.body.className = q.get('dark') === '1' ? 'dark' : 'light';
+const offers = [
+  ['pizzaexpress', 'PizzaExpress', '20%', 'Yas Mall · ends in 5 days', 24.4886, 54.6088, 1],
+  ['aldana', 'Al Dana', '20%', 'Millennium Downtown · 2.6 km', 24.4935, 54.3600],
+  ['homer', 'Homer Lobster', '15%', 'Galleria Al Maryah · 1.1 km', 24.5010, 54.3890],
+  ['papajohns', 'Papa Johns', '15%', 'Al Wahda Mall · 2.4 km', 24.4706, 54.3725],
+  ['lulu', 'Lulu', '20%', 'Khalidiyah · 4.6 km', 24.4690, 54.3510],
+  ['mora', 'Mora Pilates', '10%', 'Al Bateen · 6 km', 24.4580, 54.3380],
+  ['funcity', 'Fun City', '27 plays', 'Dalma Mall · 21 km', 24.3330, 54.5237],
+  ['sicilian', 'Sicilian Pizza', '20%', 'Khalifa City · 19 km', 24.4200, 54.5770],
+  ['pizzazone', 'Pizza Zone', '25%', 'Al Reem · 0.9 km', 24.4960, 54.4040],
+  ['jumbo', 'Jumbo', 'EIP', 'Abu Dhabi Mall · 1.4 km', 24.4960, 54.3830],
+];
+const map = L.map('map', { zoomControl: !mini, attributionControl: true, scrollWheelZoom: !mini, dragging: !mini || true });
+const dark = q.get('dark') === '1';
+L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_' + (dark ? 'Dark' : 'Light') + '_Gray_Base/MapServer/tile/{z}/{y}/{x}', { attribution: 'Tiles © Esri — Esri, HERE, Garmin, © OpenStreetMap contributors', maxZoom: 16 }).addTo(map);
+const near = q.get('near') === '1';
+map.setView(near ? [24.484, 54.380] : mini ? [24.455, 54.47] : [24.462, 54.45], near ? 13 : mini ? 10 : 11);
+L.marker([24.4900, 54.3950], { icon: L.divIcon({ className: '', html: '<div class="me" title="You are here"></div>', iconSize: [0, 0] }) }).addTo(map);
+offers.forEach(([id, m, v, where, lat, lng, red], i) => {
+  const isSel = id === sel;
+  const label = mini ? v : (isSel ? `${v} · ${m}` : v);
+  const html = `<div class="pin ${isSel ? 'sel' : ''} ${red && !isSel ? 'red' : ''}" style="animation-delay:${i * 60}ms">${label}</div>`;
+  const mk = L.marker([lat, lng], { icon: L.divIcon({ className: '', html, iconSize: [0, 0] }), title: `${m}, ${v} off`, keyboard: true, zIndexOffset: isSel ? 1000 : 0 }).addTo(map);
+  if (!mini) {
+    mk.bindPopup(`<div class="pop"><b>${v} off</b><span style="color:#14171F;font-size:14px">${m}</span><span>${where}</span><a href="#">View offer</a></div>`, { offset: [0, -34], closeButton: false });
+    if (isSel) setTimeout(() => mk.openPopup(), 700);
+  }
+});
+</script>
+</body>
+</html>

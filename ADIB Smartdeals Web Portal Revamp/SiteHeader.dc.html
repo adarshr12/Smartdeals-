@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&amp;family=IBM+Plex+Sans+Arabic:wght@400;600&amp;family=IBM+Plex+Mono:wght@400;600&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,400,0..1,0">
+</helmet>
+<header dir="{{ dir }}" style="background:{{ bg }};backdrop-filter:{{ blur }};-webkit-backdrop-filter:{{ blur }};font-family:{{ font }};color:#fff;box-shadow:{{ shadow }}">
+  <sc-if value="{{ desktopNav }}" hint-placeholder-val="{{ false }}">
+    <div style="position:relative;max-width:1360px;margin:0 auto;padding:0 clamp(16px,3vw,40px);height:64px;display:flex;align-items:center;gap:clamp(16px,2.5vw,36px);box-sizing:border-box">
+      <a href="#" onClick="{{ goHome }}" aria-label="ADIB smartdeals home" style="display:flex;flex:none"><img src="{{ logoSrc }}" alt="smartdeals" style="height:40px;display:block"></a>
+      <nav aria-label="Main" style="display:flex;align-items:stretch;gap:0;height:64px;min-width:0;flex:0 1 auto;overflow:hidden">
+        <sc-for list="{{ links }}" as="l" hint-placeholder-count="5">
+          <a href="#" onClick="{{ l.go }}" aria-current="{{ l.cur }}" style="display:flex;align-items:center;gap:4px;padding:0 clamp(6px,0.9vw,12px);color:#fff;text-decoration:none;font-size:15px;font-weight:{{ l.w }};white-space:nowrap;box-shadow:inset 0 -3px 0 {{ l.bar }};opacity:{{ l.op }}" style-hover="opacity:1">{{ l.t }}<sc-if value="{{ l.drop }}" hint-placeholder-val="{{ false }}"><span style="font-family:'Material Symbols Rounded';font-size:18px">expand_more</span></sc-if></a>
+        </sc-for>
+      </nav>
+      <sc-if value="{{ catsOpen }}" hint-placeholder-val="{{ false }}">
+        <div role="menu" aria-label="Categories" style="position:absolute;top:60px;left:clamp(160px,16vw,240px);width:280px;background:#fff;border-radius:16px;border:1px solid #E6E9EF;box-shadow:0 16px 40px rgba(16,24,40,.18);padding:8px;z-index:40;display:flex;flex-direction:column;gap:2px">
+          <sc-for list="{{ catItems }}" as="c" hint-placeholder-count="7">
+            <a href="#" role="menuitem" onClick="{{ c.go }}" style="min-height:44px;display:flex;align-items:center;gap:12px;padding:0 12px;border-radius:10px;font-size:15px;color:#14171F;text-decoration:none;border-top:{{ c.sep }}" style-hover="background:#F5F8FC"><span style="font-family:'Material Symbols Rounded';font-size:20px;color:#013978">{{ c.icon }}</span>{{ c.en }}</a>
+          </sc-for>
+        </div>
+      </sc-if>
+      <div style="flex:1"></div>
+      <div role="group" aria-label="Language" style="flex:none;display:flex;padding:3px;border-radius:999px;background:rgba(255,255,255,.12);gap:2px">
+        <span style="height:30px;min-width:34px;display:grid;place-items:center;border-radius:999px;font-size:13px;font-weight:600;background:{{ enBg }};color:{{ enColor }}">EN</span>
+        <span style="height:30px;min-width:34px;display:grid;place-items:center;border-radius:999px;font-size:14px;font-weight:600;font-family:'IBM Plex Sans Arabic';background:{{ arBg }};color:{{ arColor }}">ع</span>
+      </div>
+      <a href="#" aria-label="Saved offers" style="flex:none;width:44px;height:44px;display:grid;place-items:center;color:#fff;position:relative;text-decoration:none">
+        <span style="font-family:'Material Symbols Rounded';font-size:24px">favorite</span>
+        <span style="position:absolute;top:5px;right:3px;min-width:17px;height:17px;border-radius:9px;background:#fff;color:#013978;font-size:10px;font-weight:600;display:grid;place-items:center">{{ savedCount }}</span>
+      </a>
+      <sc-if value="{{ guest }}" hint-placeholder-val="{{ true }}">
+        <a href="#" onClick="{{ goSignin }}" style="flex:none;height:40px;display:flex;align-items:center;gap:6px;padding:0 18px;border-radius:999px;background:#fff;color:#013978;font-size:14px;font-weight:600;text-decoration:none;white-space:nowrap">Sign in</a>
+      </sc-if>
+      <sc-if value="{{ member }}" hint-placeholder-val="{{ false }}">
+        <a href="#" onClick="{{ goSignin }}" title="Sign out (prototype)" style="flex:none;height:40px;display:flex;align-items:center;gap:8px;padding:0 14px 0 4px;border-radius:999px;background:rgba(255,255,255,.12);color:#fff;font-size:14px;font-weight:600;text-decoration:none;white-space:nowrap"><span style="width:32px;height:32px;border-radius:50%;background:#fff;color:#013978;display:grid;place-items:center;font-size:13px">FA</span>My Profile</a>
+      </sc-if>
+    </div>
+  </sc-if>
+  <sc-if value="{{ desktop }}" hint-placeholder-val="{{ true }}">
+    <div style="max-width:1312px;margin:0 auto;padding:0 16px;height:64px;display:flex;align-items:center;gap:16px;box-sizing:border-box">
+      <a href="#" aria-label="ADIB smartdeals home" style="display:flex;flex:none;border-radius:8px" style-focus="outline:2px solid #fff;outline-offset:2px"><img src="{{ logoSrc }}" alt="smartdeals" style="height:40px;display:block"></a>
+      <button style="flex:none;height:36px;display:flex;align-items:center;gap:4px;padding:0 10px 0 10px;border-radius:999px;border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.08);color:#fff;font:inherit;font-size:14px;cursor:pointer">
+        <span style="font-family:'Material Symbols Rounded';font-size:18px">location_on</span>{{ emirate }}<span style="font-family:'Material Symbols Rounded';font-size:18px">expand_more</span>
+      </button>
+      <label style="flex:0 1 600px;min-width:0;height:44px;background:#fff;border-radius:12px;box-shadow:{{ searchRing }};display:flex;align-items:center;gap:10px;padding:0 14px;box-sizing:border-box;color:#5B6472;margin-inline-start:8px">
+        <span style="font-family:'Material Symbols Rounded';font-size:22px;color:#013978">search</span>
+        <span style="font-size:15px;color:{{ qColor }};flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ searchText }}</span>
+        <sc-if value="{{ hasQuery }}" hint-placeholder-val="{{ false }}"><span aria-label="Clear search" style="font-family:'Material Symbols Rounded';font-size:20px;color:#5B6472">close</span></sc-if>
+      </label>
+      <div style="flex:1"></div>
+      <a href="#" style="flex:none;display:flex;align-items:center;gap:6px;height:44px;padding:0 8px;color:#fff;text-decoration:none;font-size:14px;border-radius:10px"><span style="font-family:'Material Symbols Rounded';font-size:24px">map</span>{{ mapLabel }}</a>
+      <a href="#" style="flex:none;display:flex;align-items:center;gap:6px;height:44px;padding:0 8px;color:#fff;text-decoration:none;font-size:14px;border-radius:10px;position:relative">
+        <span style="position:relative;display:grid">
+          <span style="font-family:'Material Symbols Rounded';font-size:24px">favorite</span>
+          <span style="position:absolute;top:-4px;inset-inline-end:-8px;min-width:18px;height:18px;border-radius:9px;background:#fff;color:#013978;font-size:11px;font-weight:600;display:grid;place-items:center;padding:0 4px;box-sizing:border-box">{{ savedCount }}</span>
+        </span>
+        <span style="margin-inline-start:6px">{{ savedLabel }}</span>
+      </a>
+      <div role="group" aria-label="Language" style="flex:none;display:flex;padding:3px;border-radius:999px;background:rgba(255,255,255,.12);gap:2px">
+        <span style="height:30px;min-width:34px;display:grid;place-items:center;border-radius:999px;font-size:13px;font-weight:600;background:{{ enBg }};color:{{ enColor }}">EN</span>
+        <span style="height:30px;min-width:34px;display:grid;place-items:center;border-radius:999px;font-size:14px;font-weight:600;font-family:'IBM Plex Sans Arabic';background:{{ arBg }};color:{{ arColor }}">ع</span>
+      </div>
+      <a href="#" style="flex:none;height:40px;display:flex;align-items:center;gap:6px;padding:0 16px 0 12px;border-radius:999px;background:#fff;color:#013978;font-size:14px;font-weight:600;text-decoration:none">
+        <span style="font-family:'Material Symbols Rounded';font-size:20px">account_circle</span>{{ profileLabel }}
+      </a>
+    </div>
+  </sc-if>
+  <sc-if value="{{ mobileFull }}" hint-placeholder-val="{{ false }}">
+    <div style="height:56px;display:flex;align-items:center;gap:8px;padding:0 8px 0 12px;padding-inline:12px 4px">
+      <img src="{{ logoSrc }}" alt="smartdeals" style="height:34px;display:block">
+      <div style="flex:1"></div>
+      <button style="height:36px;display:flex;align-items:center;gap:2px;padding:0 8px;border-radius:999px;border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.08);color:#fff;font:inherit;font-size:13px">
+        <span style="font-family:'Material Symbols Rounded';font-size:17px">location_on</span>{{ emirate }}<span style="font-family:'Material Symbols Rounded';font-size:17px">expand_more</span>
+      </button>
+      <a href="#" aria-label="{{ profileLabel }}" style="width:44px;height:44px;display:grid;place-items:center;color:#fff;text-decoration:none"><span style="font-family:'Material Symbols Rounded';font-size:26px">account_circle</span></a>
+    </div>
+    <div style="padding:0 16px 12px">
+      <label style="height:44px;background:#fff;border-radius:12px;display:flex;align-items:center;gap:10px;padding:0 12px;box-sizing:border-box">
+        <span style="font-family:'Material Symbols Rounded';font-size:22px;color:#013978">search</span>
+        <span style="font-size:15px;color:{{ qColor }};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ searchText }}</span>
+      </label>
+    </div>
+  </sc-if>
+  <sc-if value="{{ mobileDocked }}" hint-placeholder-val="{{ false }}">
+    <div style="height:64px;display:flex;align-items:center;gap:4px;padding-inline:16px 4px">
+      <label style="flex:1;min-width:0;height:44px;background:#fff;border-radius:12px;display:flex;align-items:center;gap:10px;padding:0 12px;box-sizing:border-box">
+        <span style="font-family:'Material Symbols Rounded';font-size:22px;color:#013978">search</span>
+        <span style="flex:1;font-size:15px;color:{{ qColor }};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ searchText }}</span>
+        <sc-if value="{{ hasQuery }}" hint-placeholder-val="{{ false }}"><span aria-label="Clear search" style="font-family:'Material Symbols Rounded';font-size:20px;color:#5B6472">close</span></sc-if>
+      </label>
+      <a href="#" aria-label="{{ savedLabel }}" style="width:44px;height:44px;display:grid;place-items:center;color:#fff;position:relative;text-decoration:none">
+        <span style="font-family:'Material Symbols Rounded';font-size:24px">favorite</span>
+        <span style="position:absolute;top:6px;inset-inline-end:4px;min-width:16px;height:16px;border-radius:8px;background:#fff;color:#013978;font-size:10px;font-weight:600;display:grid;place-items:center">{{ savedCount }}</span>
+      </a>
+    </div>
+  </sc-if>
+</header>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:140},&quot;mobile&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;scrolled&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;rtl&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;query&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;savedCount&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:6,&quot;tsType&quot;:&quot;number&quot;},&quot;rotate&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
+class Component extends DCLogic {
+  state = { i: 0, cats: false };
+  componentDidMount() {
+    this.rs = () => this.forceUpdate(); window.addEventListener('resize', this.rs);
+    if (!window.SD_IMG) this.w = setInterval(() => { if (window.SD_IMG) { clearInterval(this.w); this.forceUpdate(); } }, 60);
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (this.props.rotate) this.t = setInterval(() => this.setState(s => ({ i: (s.i + 1) % 3 })), 2800);
+  }
+  componentWillUnmount() { clearInterval(this.t); clearInterval(this.w); window.removeEventListener('resize', this.rs); }
+  renderVals() {
+    const p = this.props, rtl = !!p.rtl, mobile = !!p.mobile, scrolled = !!p.scrolled;
+    const ph = rtl ? ['ابحث عن ‘نمشي’', 'ابحث عن ‘برنش’', 'ابحث عن ‘تقسيط إلكترونيات’'] : ['Search ‘Namshi’', 'Search ‘brunch’', 'Search ‘electronics EIP’'];
+    const q = p.query;
+    const nav = (pg) => (e) => { if (e && e.preventDefault) e.preventDefault(); if (p.go) p.go(pg); };
+    return {
+      dir: rtl ? 'rtl' : 'ltr',
+      font: rtl ? "'IBM Plex Sans Arabic','IBM Plex Sans',sans-serif" : "'IBM Plex Sans',sans-serif",
+      desktopNav: !mobile && !!p.nav, guest: p.signedIn !== true, member: p.signedIn === true,
+      goHome: nav('home'), goSignin: nav('signin'), logoSrc: (window.SD_IMG && window.SD_IMG['assets/smartdeals-logo.png']) || 'assets/smartdeals-logo.png',
+      catsOpen: !!this.state.cats,
+      catItems: ((window.SD && window.SD.cats) || []).map(c => ({ ...c, sep: c.eip ? '1px solid #EEF0F3' : '0', go: (e) => { e.preventDefault(); this.setState({ cats: false }); p.go && p.go(c.eip ? 'eip' : 'cat', c.en); } })),
+      links: [['Home', 'home'], ['All offers', 'all'], ['Categories', 'cats', 1], [(typeof window !== 'undefined' && window.innerWidth < 1240) ? 'EIP' : 'Easy Instalment Plan', 'eip'], ['Near me', 'map']].map(([t, k, drop]) => { const on = (p.active || 'home') === k; return { t, go: k === 'cats' ? (e) => { e.preventDefault(); this.setState(s => ({ cats: !s.cats })); } : nav(k), drop: !!drop, cur: on ? 'page' : 'false', w: on ? 600 : 400, bar: on ? '#2BC79A' : 'transparent', op: on ? 1 : 0.85 }; }),
+      desktop: !mobile && !p.nav, mobileFull: mobile && !scrolled, mobileDocked: mobile && scrolled,
+      bg: p.transparent ? 'transparent' : scrolled ? 'rgba(1,57,120,.82)' : '#013978', mapLabel: rtl ? 'الخريطة' : 'Map', searchRing: p.searchFocus ? '0 0 0 3px #2BC79A, 0 8px 24px rgba(0,0,0,.25)' : 'none',
+      blur: scrolled ? 'blur(14px) saturate(140%)' : 'none',
+      shadow: scrolled ? '0 4px 16px rgba(1,30,70,.18)' : 'none',
+      searchText: q || ph[this.state.i], hasQuery: !!q, qColor: q ? '#14171F' : '#5B6472',
+      emirate: rtl ? 'أبوظبي' : 'Abu Dhabi',
+      savedLabel: rtl ? 'المحفوظات' : 'Saved', savedCount: p.savedCount ?? 6,
+      profileLabel: rtl ? 'حسابي' : 'My Profile',
+      enBg: rtl ? 'transparent' : '#fff', enColor: rtl ? '#fff' : '#013978',
+      arBg: rtl ? '#fff' : 'transparent', arColor: rtl ? '#013978' : '#fff',
+    };
+  }
+}
+</script>
+</body>
+</html>

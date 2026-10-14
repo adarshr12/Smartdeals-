@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&amp;family=IBM+Plex+Sans+Arabic:wght@400;600&amp;family=IBM+Plex+Mono:wght@400;600&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,400,0..1,0">
+<style>@keyframes sdShimmer{0%{background-position:-300px 0}100%{background-position:300px 0}}@keyframes sdRise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}@keyframes sdPulse{0%{box-shadow:0 0 0 0 rgba(217,45,32,.55)}70%{box-shadow:0 0 0 7px rgba(217,45,32,0)}100%{box-shadow:0 0 0 0 rgba(217,45,32,0)}}@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}</style>
+</helmet>
+<sc-if value="{{ isSkeleton }}" hint-placeholder-val="{{ false }}">
+  <div aria-busy="true" aria-label="Loading offer" style="background:#fff;border-radius:16px;overflow:hidden;border:1px solid #E6E9EF;height:100%;box-sizing:border-box;display:flex;flex-direction:column">
+    <div style="aspect-ratio:4/3;background:linear-gradient(90deg,#EDF0F4 0,#F7F8FA 40%,#EDF0F4 80%);background-size:600px 100%;animation:sdShimmer 1.2s linear infinite"></div>
+    <div style="padding:28px 12px 14px;display:flex;flex-direction:column;gap:8px">
+      <div style="height:20px;width:55%;border-radius:6px;background:linear-gradient(90deg,#EDF0F4 0,#F7F8FA 40%,#EDF0F4 80%);background-size:600px 100%;animation:sdShimmer 1.2s linear infinite"></div>
+      <div style="height:12px;width:85%;border-radius:6px;background:#EDF0F4"></div>
+      <div style="height:12px;width:40%;border-radius:6px;background:#EDF0F4"></div>
+      <div style="height:22px;width:50%;border-radius:6px;background:#EDF0F4;margin-top:6px"></div>
+    </div>
+  </div>
+</sc-if>
+<sc-if value="{{ notSkeleton }}" hint-placeholder-val="{{ true }}">
+  <article dir="{{ dir }}" onClick="{{ open }}" tabIndex="0" style="animation:sdRise .5s cubic-bezier(.2,.7,.2,1) both;animation-delay:{{ delay }};position:relative;background:#fff;border-radius:16px;overflow:hidden;border:1px solid #E6E9EF;box-shadow:{{ shadow }};transform:{{ lift }};transition:transform .2s ease, box-shadow .2s ease;font-family:{{ font }};display:flex;flex-direction:column;height:100%;box-sizing:border-box;color:#14171F;cursor:pointer" style-hover="transform:translateY(-2px);box-shadow:0 2px 4px rgba(16,24,40,.06),0 14px 28px rgba(16,24,40,.12)">
+    <div style="position:relative;aspect-ratio:4/3;background:{{ imgBg }}">
+      <sc-if value="{{ hasImg }}" hint-placeholder-val="{{ false }}"><img src="{{ imgSrc }}" alt="" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;filter:{{ imgFilter }}"></sc-if>
+      <div style="position:absolute;inset:0;display:grid;place-items:center;padding:0 12px;filter:{{ imgFilter }}">
+        <sc-if value="{{ eipArt }}" hint-placeholder-val="{{ false }}"><span style="display:flex;flex-direction:column;align-items:center;gap:8px;color:#53389E"><span style="width:56px;height:56px;border-radius:16px;background:#fff;display:grid;place-items:center;font-family:'Material Symbols Rounded';font-size:30px;box-shadow:0 4px 12px rgba(83,56,158,.15)">calendar_month</span><b style="font-size:13px;font-weight:600">Easy Instalment Plan</b></span></sc-if>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;line-height:1.3;color:rgba(20,23,31,.5);text-align:center" dir="ltr">{{ imgLabel }}</span>
+      </div>
+      <span style="position:absolute;top:10px;inset-inline-start:10px;max-width:calc(100% - 64px);background:{{ badgeBg }};color:#fff;font-size:11px;line-height:14px;font-weight:600;padding:4px 9px;border-radius:999px">{{ badge }}</span>
+      <button onClick="{{ toggleSave }}" aria-label="{{ heartLabel }}" aria-pressed="{{ saved }}" style="position:absolute;top:2px;inset-inline-end:2px;width:44px;height:44px;border:0;background:transparent;display:grid;place-items:center;cursor:pointer;padding:0;border-radius:50%" style-focus="outline:2px solid #013978;outline-offset:-2px">
+        <span style="width:32px;height:32px;border-radius:50%;background:#fff;display:grid;place-items:center;box-shadow:0 1px 3px rgba(16,24,40,.16)">
+          <span style="font-family:'Material Symbols Rounded';font-size:20px;line-height:1;color:#013978;font-variation-settings:{{ heartFill }};transform:{{ heartScale }};transition:transform .2s cubic-bezier(.3,1.6,.5,1)">favorite</span>
+        </span>
+      </button>
+      <sc-if value="{{ expired }}" hint-placeholder-val="{{ false }}">
+        <div style="position:absolute;inset:0;background:rgba(246,247,249,.55);display:grid;place-items:center">
+          <span style="background:#3D4450;color:#fff;font-size:12px;font-weight:600;padding:6px 12px;border-radius:999px">{{ expiredLabel }}</span>
+        </div>
+      </sc-if>
+      <div style="position:absolute;bottom:-20px;inset-inline-start:12px;width:40px;height:40px;border-radius:8px;background:#fff;box-shadow:0 1px 2px rgba(16,24,40,.08),0 2px 8px rgba(16,24,40,.10);display:grid;place-items:center;font-size:13px;font-weight:600;color:#14171F;font-family:'IBM Plex Sans',sans-serif" dir="ltr">{{ ini }}</div>
+    </div>
+    <div style="padding:28px 12px 12px;display:flex;flex-direction:column;gap:2px;flex:1">
+      <sc-if value="{{ sponsored }}" hint-placeholder-val="{{ false }}">
+        <span style="font-size:11px;font-weight:600;color:#5B6472;letter-spacing:.04em;text-transform:uppercase;margin-bottom:2px">{{ sponsoredLabel }}</span>
+      </sc-if>
+      <div style="font-size:{{ fsV }}px;line-height:1.25;font-weight:600;color:{{ valColor }};text-wrap:balance">{{ value }}</div>
+      <div style="font-size:{{ fsC }}px;line-height:1.35;color:#5B6472">{{ cond }}</div>
+      <div style="font-size:{{ fsM }}px;line-height:1.35;color:#14171F;margin-top:4px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ m }}</div>
+      <sc-if value="{{ hasReason }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;gap:4px;align-items:flex-start;font-size:12px;line-height:1.35;color:#5B6472;margin-top:2px">
+          <span style="font-family:'Material Symbols Rounded';font-size:14px;line-height:17px;color:#013978">{{ reasonIcon }}</span>
+          <span>{{ reason }}</span>
+        </div>
+      </sc-if>
+      <sc-if value="{{ hasFooter }}" hint-placeholder-val="{{ false }}">
+        <div style="margin:auto -12px -12px;padding:8px 12px;margin-top:auto;display:flex;flex-wrap:wrap;gap:6px;align-items:center;justify-content:space-between;background:{{ footBg }};border-top:{{ footBorder }}">
+          <sc-if value="{{ hasEnds }}" hint-placeholder-val="{{ false }}">
+            <span style="display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:600;color:{{ endsColor }}">
+              <sc-if value="{{ urgent }}" hint-placeholder-val="{{ false }}"><span style="width:8px;height:8px;border-radius:50%;background:{{ dotBg }};animation:sdPulse 1.6s infinite;margin-inline-end:2px"></span></sc-if><sc-if value="{{ calm }}" hint-placeholder-val="{{ true }}"><span style="font-family:'Material Symbols Rounded';font-size:15px;line-height:1">schedule</span></sc-if>{{ ends }}
+            </span>
+          </sc-if>
+          <sc-if value="{{ hasCard }}" hint-placeholder-val="{{ false }}">
+            <span style="display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:600;color:#013978;background:#EEF3FA;border:1px solid #CBD7E8;padding:2px 7px;border-radius:6px;margin-inline-start:auto">
+              <span style="font-family:'Material Symbols Rounded';font-size:14px;line-height:1">credit_card</span>{{ card }}
+            </span>
+          </sc-if>
+        </div>
+      </sc-if>
+    </div>
+  </article>
+</sc-if>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:260,&quot;height&quot;:360},&quot;offer&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;object&quot;},&quot;state&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;default&quot;,&quot;hover&quot;,&quot;saved&quot;,&quot;expiring&quot;,&quot;expired&quot;,&quot;skeleton&quot;,&quot;sponsored&quot;],&quot;default&quot;:&quot;default&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;rtl&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;compact&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;saved&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;sponsored&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;showReason&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
+class Component extends DCLogic {
+  state = { s: null, pop: false };
+  renderVals() {
+    const p = this.props;
+    const o = p.offer || window.SD?.O?.namshi || { m: 'Namshi', ini: 'N', badge: 'Online · Code', value: '15% off', cond: 'Min AED 200 · Max AED 150', days: 3, card: 'Visa Infinite', hue: 15 };
+    const st = p.state || 'default';
+    const rtl = !!p.rtl;
+    const L = rtl && o.ar ? { ...o, ...o.ar } : o;
+    const expired = st === 'expired';
+    let d = o.days;
+    if (st === 'expiring' && (d == null || d > 7)) d = 3;
+    let ends = null, tone = null;
+    if (expired) { ends = rtl ? 'انتهى في 2 أكتوبر' : 'Ended 2 Oct'; tone = 'neutral'; }
+    else if (d != null && d <= 30) {
+      ends = d <= 0 ? (rtl ? 'ينتهي اليوم' : 'Ends today') : rtl ? `ينتهي خلال ${d} أيام` : `Ends in ${d} days`;
+      tone = d <= 0 ? 'red' : d <= 7 ? 'amber' : 'neutral';
+    }
+    const saved = this.state.s ?? (st === 'saved' || !!p.saved);
+    const compact = !!p.compact;
+    const k = rtl ? 1.12 : 1;
+    const footBg = tone === 'amber' ? '#FEECEB' : tone === 'red' ? '#D92D20' : 'transparent';
+    const hasCard = !!L.card && !expired;
+    return {
+      dir: rtl ? 'rtl' : 'ltr',
+      font: rtl ? "'IBM Plex Sans Arabic','IBM Plex Sans',sans-serif" : "'IBM Plex Sans','IBM Plex Sans Arabic',sans-serif",
+      isSkeleton: st === 'skeleton', notSkeleton: st !== 'skeleton',
+      m: L.m, ini: o.ini, badge: o.eip && !rtl ? 'EIP · ' + (o.tenures || [3, 6, 12]).join('/') + ' mo' : L.badge, value: L.value, cond: L.cond,
+      reason: L.reason, reasonIcon: o.proof === 'near' ? 'near_me' : o.proof === 'similar' ? 'group' : 'auto_awesome', hasReason: !!L.reason && p.showReason !== false && !compact && !expired,
+      card: L.card, hasCard,
+      ends, hasEnds: !!ends, endsColor: tone === 'amber' ? '#B42318' : tone === 'red' ? '#fff' : '#5B6472', urgent: tone === 'amber' || tone === 'red', calm: !(tone === 'amber' || tone === 'red'), dotBg: tone === 'red' ? '#fff' : '#D92D20', delay: (p.delay || 0) + 'ms',
+      hasFooter: !!ends || hasCard,
+      footBg, footBorder: tone === 'amber' ? '1px solid #F9CFCB' : '0',
+      expired, expiredLabel: rtl ? 'منتهي' : 'Expired',
+      sponsored: st === 'sponsored' || !!p.sponsored, sponsoredLabel: rtl ? 'إعلان' : 'Sponsored',
+      saved, heartFill: saved ? "'FILL' 1" : "'FILL' 0", heartScale: this.state.pop ? 'scale(1.2)' : 'scale(1)',
+      open: () => { if (p.go && st !== 'skeleton' && st !== 'expired') p.go('detail', o.id); },
+      toggleSave: (e) => { e.stopPropagation(); this.setState({ s: !saved, pop: true }); setTimeout(() => this.setState({ pop: false }), 200); }, heartLabel: saved ? 'Remove from saved' : 'Save offer',
+      hasImg: !!o.img, imgSrc: o.img, eipArt: !o.img && !!o.eip, imgBg: o.img ? '#F3F5F9' : o.eip ? '#F3F1FE' : `repeating-linear-gradient(135deg, oklch(0.935 0.035 ${o.hue ?? 250}) 0 8px, oklch(0.962 0.02 ${o.hue ?? 250}) 8px 16px)`,
+      imgFilter: expired ? 'grayscale(1)' : 'none', imgLayer: o.img ? `center / cover no-repeat url("${o.img}")` : 'none',
+      imgLabel: o.img || o.eip ? '' : `${o.m} · product shot`,
+      badgeBg: expired ? '#5B6472' : '#013978',
+      valColor: expired ? '#5B6472' : '#00775F',
+      shadow: st === 'hover' ? '0 2px 4px rgba(16,24,40,.06),0 14px 28px rgba(16,24,40,.12)' : '0 1px 2px rgba(16,24,40,.06),0 4px 12px rgba(16,24,40,.06)',
+      lift: st === 'hover' ? 'translateY(-2px)' : 'none',
+      fsV: Math.round((compact ? 18 : 20) * k), fsC: Math.round((compact ? 12 : 13) * k), fsM: Math.round(14 * k),
+    };
+  }
+}
+</script>
+</body>
+</html>

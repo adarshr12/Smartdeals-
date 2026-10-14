@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&amp;family=IBM+Plex+Sans+Arabic:wght@400;600&amp;family=IBM+Plex+Mono:wght@400;600&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,400,0..1,0">
+<script src="data.js"></script>
+<style>body{margin:0;background:#F6F7F9}a{color:#013978}a:hover{color:#00275A}</style>
+</helmet>
+<div style="width:1440px;background:#F6F7F9;font-family:'IBM Plex Sans',sans-serif;color:#14171F">
+  <div style="position:sticky;top:0;z-index:20">
+    <dc-import name="SiteHeader" query="Offers near me" rotate="{{ false }}" hint-size="100%,64px"></dc-import>
+    <div style="background:#fff;border-bottom:1px solid #E6E9EF">
+      <div style="max-width:1280px;margin:0 auto;height:60px;display:flex;align-items:center;gap:8px">
+        <button style="height:36px;display:flex;align-items:center;gap:6px;padding:0 14px 0 10px;border-radius:999px;border:1px solid #013978;background:#EEF3FA;color:#013978;font:inherit;font-size:14px;font-weight:600;cursor:pointer"><span style="font-family:'Material Symbols Rounded';font-size:18px">tune</span>Filters · 2</button>
+        <button aria-expanded="true" style="height:36px;display:flex;align-items:center;gap:4px;padding:0 10px 0 14px;border-radius:999px;border:2px solid #013978;background:#fff;color:#14171F;font:inherit;font-size:14px;cursor:pointer;outline:2px solid #9DB6DC;outline-offset:2px">Sort<span style="font-family:'Material Symbols Rounded';font-size:18px">expand_less</span></button>
+        <span style="width:1px;height:24px;background:#E6E9EF;margin:0 4px"></span>
+        <sc-for list="{{ chips }}" as="c" hint-placeholder-count="8">
+          <sc-if value="{{ c.on }}" hint-placeholder-val="{{ false }}">
+            <button aria-pressed="true" style="height:36px;display:flex;align-items:center;gap:4px;padding:0 10px 0 14px;border-radius:999px;border:1px solid #013978;background:#013978;color:#fff;font:inherit;font-size:14px;cursor:pointer">{{ c.l }}<span style="font-family:'Material Symbols Rounded';font-size:18px">close</span></button>
+          </sc-if>
+          <sc-if value="{{ c.off }}" hint-placeholder-val="{{ true }}">
+            <button aria-pressed="false" style="height:36px;display:flex;align-items:center;padding:0 14px;border-radius:999px;border:1px solid #C9D1DD;background:#fff;color:#14171F;font:inherit;font-size:14px;cursor:pointer" style-hover="border-color:#013978">{{ c.l }}</button>
+          </sc-if>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+  <main style="max-width:1280px;margin:0 auto;padding:20px 0 64px;display:flex;flex-direction:column;gap:16px;position:relative">
+    <nav aria-label="Breadcrumb" style="font-size:13px;color:#5B6472;display:flex;gap:6px"><a href="#" style="color:#013978;text-decoration:none">Home</a><span>/</span><span>Offers near me</span></nav>
+    <h1 style="margin:0;font-size:28px;line-height:1.2;font-weight:600">Offers near me</h1>
+    <div style="display:flex;align-items:center;gap:12px;min-height:40px">
+      <span style="font-size:16px;font-weight:600;flex:none">128 offers</span>
+      <span style="width:1px;height:20px;background:#D5DAE2"></span>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;flex:1">
+        <span style="height:32px;display:inline-flex;align-items:center;gap:4px;padding:0 6px 0 12px;border-radius:999px;background:#E6EDF7;color:#013978;font-size:13px;font-weight:600">In-store<button aria-label="Remove In-store" style="width:24px;height:24px;border:0;background:transparent;color:#013978;display:grid;place-items:center;padding:0;cursor:pointer"><span style="font-family:'Material Symbols Rounded';font-size:16px">close</span></button></span>
+        <span style="height:32px;display:inline-flex;align-items:center;gap:4px;padding:0 6px 0 12px;border-radius:999px;background:#E6EDF7;color:#013978;font-size:13px;font-weight:600">Works with Visa Infinite<button aria-label="Remove card filter" style="width:24px;height:24px;border:0;background:transparent;color:#013978;display:grid;place-items:center;padding:0;cursor:pointer"><span style="font-family:'Material Symbols Rounded';font-size:16px">close</span></button></span>
+        <a href="#" style="font-size:13px;font-weight:600;color:#013978;padding:6px 4px">Clear all</a>
+      </div>
+      <button style="flex:none;height:40px;display:flex;align-items:center;gap:4px;padding:0 8px 0 12px;border-radius:12px;border:1px solid #C9D1DD;background:#fff;font:inherit;font-size:14px;color:#14171F;cursor:pointer"><span style="color:#5B6472">Sort:</span><b style="font-weight:600">Recommended</b><span style="font-family:'Material Symbols Rounded';font-size:18px">expand_more</span></button>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px">
+      <sc-for list="{{ items }}" as="o" hint-placeholder-count="8">
+        <dc-import name="OfferCard" offer="{{ o }}" hint-size="100%,380px"></dc-import>
+      </sc-for>
+      <sc-for list="{{ skel }}" as="s" hint-placeholder-count="4">
+        <dc-import name="OfferCard" state="skeleton" hint-size="100%,380px"></dc-import>
+      </sc-for>
+    </div>
+    <div role="listbox" aria-label="Sort by" style="position:absolute;top:-6px;left:128px;width:260px;background:#fff;border-radius:16px;border:1px solid #E6E9EF;box-shadow:0 8px 32px rgba(16,24,40,.18);padding:8px;z-index:15">
+      <sc-for list="{{ sorts }}" as="s" hint-placeholder-count="5">
+        <div role="option" aria-selected="{{ s.on }}" style="height:44px;display:flex;align-items:center;gap:10px;padding:0 12px;border-radius:10px;font-size:14px;background:{{ s.bg }};font-weight:{{ s.w }};color:#14171F">
+          <span style="font-family:'Material Symbols Rounded';font-size:20px;color:#013978;font-variation-settings:{{ s.fill }}">{{ s.icon }}</span>{{ s.l }}
+        </div>
+      </sc-for>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() {
+    if (!window.SD) this.t = setInterval(() => { if (window.SD) { clearInterval(this.t); this.forceUpdate(); } }, 50);
+  }
+  componentWillUnmount() { clearInterval(this.t); }
+  renderVals() {
+    const SD = window.SD;
+    const on = ['In-store', 'Near me'];
+    return {
+      chips: ['Online', 'In-store', 'Near me', 'Expiring soon', 'New', 'Instalments', 'Cashback', 'BOGO'].map(l => ({ l, on: on.includes(l), off: !on.includes(l) })),
+      items: SD ? SD.pick(['pizzaexpress', 'aldana', 'lulu', 'homer', 'papajohns', 'funcity', 'mora', 'apple']) : [],
+      skel: [1, 2, 3, 4],
+      sorts: ['Recommended', 'Highest value', 'Ending soon', 'Newest', 'Nearest'].map((l, i) => ({ l, on: i === 0, bg: i === 0 ? '#EEF3FA' : 'transparent', w: i === 0 ? 600 : 400, icon: i === 0 ? 'radio_button_checked' : 'radio_button_unchecked', fill: "'FILL' 0" })),
+    };
+  }
+}
+</script>
+</body>
+</html>
